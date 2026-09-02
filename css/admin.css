@@ -1,0 +1,17 @@
+/* Sidebar simple */
+.sidebar .nav-link {
+    font-size: 0.95rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--color-brand-muted, #F3F4F6);
+    color: var(--color-brand-orange, #EA580C) !important;
+}
+
+/* Alineación de tablas */
+table th, table td {
+    vertical-align: middle;
+}
