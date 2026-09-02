@@ -1,0 +1,17 @@
+/* css/global.css */
+:root {
+    --color-brand-orange: #ea580c;
+    --color-brand-orange-light: #fb923c;
+    --color-brand-dark: #111827;
+    --color-brand-grey: #374151;
+    --color-brand-steel: #6b7280;
+    --color-brand-muted: #f3f4f6;
+    --color-brand-green: #16a34a;
+    --color-brand-green-light: #dcfce7;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: var(--color-brand-muted);
+}
