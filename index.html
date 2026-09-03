@@ -83,13 +83,19 @@
                             </li>
                             <li class="nav-item ms-lg-3">
                                 <a
-                                    class="nav-link text-brand-white fw-bold"
+                                    class="nav-link text-brand-white fw-bold d-flex align-items-center"
                                     data-bs-toggle="offcanvas"
                                     href="#carritoOffcanvas"
                                     role="button"
                                     aria-controls="carritoOffcanvas"
                                 >
                                     🛒 Mi Carrito
+                                    <!-- Burbuja con el contador -->
+                                    <span
+                                        id="contador-carrito"
+                                        class="badge bg-danger rounded-pill ms-2"
+                                        >0</span
+                                    >
                                 </a>
                             </li>
                             <li class="nav-item ms-lg-3">
@@ -400,8 +406,16 @@
             aria-labelledby="carritoOffcanvasLabel"
         >
             <div class="offcanvas-header bg-brand-dark text-white">
-                <h5 class="offcanvas-title fw-bold" id="carritoOffcanvasLabel">
+                <h5
+                    class="offcanvas-title fw-bold d-flex align-items-center"
+                    id="carritoOffcanvasLabel"
+                >
                     Mi Lista de Productos
+                    <span
+                        id="contador-offcanvas"
+                        class="badge bg-secondary ms-2"
+                        >0</span
+                    >
                 </h5>
                 <button
                     type="button"
