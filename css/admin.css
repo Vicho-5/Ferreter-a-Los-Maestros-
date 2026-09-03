@@ -3,12 +3,12 @@
    ========================================= */
 
 /* --- Menú Lateral (Sidebar) --- */
-.admin-sidebar {
+.menu-lateral-admin {
     background-color: #ffffff;
     min-height: calc(100vh - 56px);
 }
 
-.admin-sidebar .nav-link {
+.menu-lateral-admin .nav-link {
     color: var(--color-brand-grey);
     font-weight: 500;
     padding: 10px 16px;
@@ -16,46 +16,46 @@
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.admin-sidebar .nav-link:hover,
-.admin-sidebar .nav-link.active {
+.menu-lateral-admin .nav-link:hover,
+.menu-lateral-admin .nav-link.active {
     background-color: var(--color-brand-muted);
     color: var(--color-brand-orange) !important;
 }
 
 /* --- Tarjetas de Métricas (Dashboard) --- */
-.metric-card {
+.tarjeta-metrica {
     background-color: #0f172a !important; 
     border: 1px solid #1e293b !important;
     border-radius: 8px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.metric-card:hover {
+.tarjeta-metrica:hover {
     transform: translateY(-3px);
     box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.35) !important;
 }
 
-.metric-label {
+.etiqueta-metrica {
     color: #94a3b8;
     font-size: 0.875rem;
     font-weight: 600;
 }
 
-.metric-value {
+.valor-metrico {
     color: #ffffff;
     font-size: 1.75rem;
     font-weight: 700;
 }
 
 /* --- Tablas Administrativas --- */
-.custom-admin-table th {
+.tabla-admin-personalizada th {
     font-weight: 600;
     font-size: 0.9rem;
     vertical-align: middle;
     padding: 12px 16px;
 }
 
-.custom-admin-table td {
+.tabla-admin-personalizada td {
     vertical-align: middle;
     font-size: 0.95rem;
     padding: 12px 16px;
@@ -63,7 +63,7 @@
 }
 
 /* --- Color de la etiqueta de Vendedor --- */
-.badge-vendedor {
+.etiqueta-vendedor {
     background-color: var(--color-brand-orange, #EA580C);
     color: #ffffff;
 }
