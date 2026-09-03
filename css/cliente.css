@@ -49,6 +49,18 @@
     color: white;
 }
 
+.btn-brand-dark {
+    background-color: var(--color-brand-dark);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-brand-dark:hover {
+    background-color: var(--color-brand-orange);
+    color: white;
+}
+
 /* Fondo de Iconos */
 .bg-icon-orange {
     background-color: var(--color-brand-orange);
