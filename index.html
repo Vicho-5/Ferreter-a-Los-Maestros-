@@ -29,6 +29,9 @@
         <!-- Hojas de estilo externas -->
         <link rel="stylesheet" href="css/global.css" />
         <link rel="stylesheet" href="css/cliente.css" />
+
+        <!-- Sript -->
+        <script src="js/cliente.js" defer></script>
     </head>
     <body class="bg-light font-inter">
         <!-- 4.1 ENCABEZADO Y MENÚ DE NAVEGACIÓN -->
@@ -79,6 +82,23 @@
                                 >
                             </li>
                             <li class="nav-item ms-lg-3">
+                                <a
+                                    class="nav-link text-brand-white fw-bold d-flex align-items-center"
+                                    data-bs-toggle="offcanvas"
+                                    href="#carritoOffcanvas"
+                                    role="button"
+                                    aria-controls="carritoOffcanvas"
+                                >
+                                    🛒 Mi Carrito
+                                    <!-- Burbuja con el contador -->
+                                    <span
+                                        id="contador-carrito"
+                                        class="badge bg-danger rounded-pill ms-2"
+                                        >0</span
+                                    >
+                                </a>
+                            </li>
+                            <li class="nav-item ms-lg-3">
                                 <a class="btn btn-orange" href="login.html"
                                     >Iniciar Sesión</a
                                 >
@@ -114,51 +134,14 @@
                 <h2 class="fw-bold mb-4 text-brand-dark">
                     Productos Destacados
                 </h2>
-                <div class="row g-4">
-                    <!-- Producto 1 -->
-                    <div class="col-md-3">
-                        <div class="card h-100 shadow-sm border-0 product-card">
-                            <img
-                                src="/Ferreter-a-Los-Maestros-/img/prod_2_taladro-percutor.jpg"
-                                class="card-img-top img-product-destacados"
-                                alt="Taladro Percutor"
-                            />
-                            <div class="card-body">
-                                <span class="badge bg-brand-green mb-2"
-                                    >En stock</span
-                                >
-                                <h5 class="card-title fw-bold">
-                                    Taladro Percutor 850W
-                                </h5>
-                                <p class="card-text text-muted">BOSCH</p>
-                                <h4 class="fw-bold text-brand-orange">
-                                    $124,900
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Producto 2 -->
-                    <div class="col-md-3">
-                        <div class="card h-100 shadow-sm border-0 product-card">
-                            <img
-                                src="/Ferreter-a-Los-Maestros-/img/prod_1_sierra-circular.jpg"
-                                class="card-img-top img-product-destacados"
-                                alt="Sierra Circular"
-                            />
-                            <div class="card-body">
-                                <span class="badge bg-warning text-dark mb-2"
-                                    >Últimas unidades</span
-                                >
-                                <h5 class="card-title fw-bold">
-                                    Sierra Circular 7¼"
-                                </h5>
-                                <p class="card-text text-muted">DEWALT</p>
-                                <h4 class="fw-bold text-brand-orange">
-                                    $235,000
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row g-4" id="contenedor-destacados"></div>
+
+                <div class="text-center mt-5">
+                    <a
+                        href="catalogo.html"
+                        class="btn btn-outline-dark btn-lg fw-bold"
+                        >Ver todo el catálogo</a
+                    >
                 </div>
             </section>
 
@@ -414,6 +397,66 @@
                 </div>
             </section>
         </main>
+
+        <!-- Menú Lateral: Carrito (Offcanvas) -->
+        <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="carritoOffcanvas"
+            aria-labelledby="carritoOffcanvasLabel"
+        >
+            <div class="offcanvas-header bg-brand-dark text-white">
+                <h5
+                    class="offcanvas-title fw-bold d-flex align-items-center"
+                    id="carritoOffcanvasLabel"
+                >
+                    Mi Lista de Productos
+                    <span
+                        id="contador-offcanvas"
+                        class="badge bg-secondary ms-2"
+                        >0</span
+                    >
+                </h5>
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Close"
+                ></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column">
+                <!-- Aquí JavaScript inyectará los productos -->
+                <div
+                    id="contenedor-items-carrito"
+                    class="flex-grow-1 overflow-auto"
+                >
+                    <p class="text-muted text-center mt-4">
+                        Tu carrito está vacío.
+                    </p>
+                </div>
+
+                <!-- Sección de Total -->
+                <div class="mt-auto pt-3 border-top">
+                    <div
+                        class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                        <h5 class="fw-bold mb-0">Total:</h5>
+                        <h4
+                            class="fw-bold text-brand-orange mb-0"
+                            id="total-carrito"
+                        >
+                            $0
+                        </h4>
+                    </div>
+                    <button
+                        class="btn btn-outline-danger w-100 fw-bold"
+                        onclick="vaciarCarrito()"
+                    >
+                        Vaciar Lista
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <!-- PIE DE PÁGINA -->
         <footer class="footer-custom py-4 text-center text-white">
