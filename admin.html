@@ -5,136 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración | Ferretería Los Maestros</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Hojas de estilo externas -->
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/admin.css">
 </head>
-<body>
+<body class="bg-light font-inter">
 
-    <!-- Header Superior -->
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-warning fw-bold" href="#">
-            <i class="bi bi-tools"></i> Ferretería Los Maestros
-        </a>
-        <div class="navbar-nav pe-3">
-            <div class="nav-item text-nowrap">
-                <a class="nav-link px-3 text-white" href="login.html">
-                    <i class="bi bi-box-arrow-right"></i> Salir
-                </a>
+    <!-- ENCABEZADO SUPERIOR CON TEXTOS OSCUROS -->
+    <header class="navbar navbar-light bg-white sticky-top flex-md-nowrap p-2 shadow-sm border-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold text-dark" href="#">
+                <span class="logo-box">FM</span>
+                Panel de Administración
+            </a>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-dark fw-semibold small d-none d-md-inline">
+                    <i class="bi bi-person-circle"></i> Administrador
+                </span>
+                <a href="login.html" class="btn btn-outline-dark btn-sm fw-bold">Cerrar Sesión</a>
             </div>
         </div>
     </header>
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Menú Lateral -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-white sidebar collapse border-end min-vh-100 p-3">
+            
+            <!-- MENÚ LATERAL (SIDEBAR) -->
+            <nav class="col-md-3 col-lg-2 d-md-block admin-sidebar collapse border-end p-3">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column gap-2">
                         <li class="nav-item">
-                            <a class="nav-link active text-warning fw-semibold" href="#panel-resumen">
+                            <a class="nav-link active" href="#dashboard">
                                 <i class="bi bi-speedometer2 me-2"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" href="#mantenedor-productos">
+                            <a class="nav-link" href="#seccion-productos">
                                 <i class="bi bi-box-seam me-2"></i> Productos
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-secondary" href="#mantenedor-usuarios">
+                            <a class="nav-link" href="#seccion-usuarios">
                                 <i class="bi bi-people me-2"></i> Usuarios
                             </a>
                         </li>
-                        <hr class="my-3">
+                        <hr class="my-3 text-secondary">
                         <li class="nav-item">
                             <a class="nav-link text-muted" href="index.html">
-                                <i class="bi bi-shop me-2"></i> Ver Tienda Pública
+                                <i class="bi bi-shop me-2"></i> Ir a Tienda Pública
                             </a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
-            <!-- Contenido Principal -->
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4 bg-light">
+            <!-- ÁREA PRINCIPAL -->
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 py-4">
                 
-                <!-- Encabezado de Vista -->
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard Administrativo</h1>
-                    <span class="badge bg-dark p-2">Rol: Administrador General</span>
+                <!-- TÍTULO DE SECCIÓN -->
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-4 border-bottom">
+                    <h1 class="h3 fw-bold text-brand-dark">Resumen del Negocio</h1>
+                    <span class="badge bg-brand-green px-3 py-2">Estado: Operativo</span>
                 </div>
 
-                <!-- Tarjetas de Métricas -->
-                <div class="row g-3 mb-4" id="panel-resumen">
+                <!-- TARJETAS DE MÉTRICAS -->
+                <div class="row g-3 mb-5" id="dashboard">
                     <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card border-0 shadow-sm p-3">
-                            <div class="text-muted small">Total Productos</div>
-                            <div class="fs-4 fw-bold text-dark">800+</div>
+                        <div class="card p-3 shadow-sm metric-card">
+                            <div class="metric-label">Catálogo Total</div>
+                            <div class="metric-value" id="metric-total-prod">800+</div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card border-0 shadow-sm p-3">
-                            <div class="text-muted small">Alertas de Reposición</div>
-                            <div class="fs-4 fw-bold text-danger">3 Críticos</div>
+                        <div class="card p-3 shadow-sm metric-card">
+                            <div class="metric-label">Alertas de Stock</div>
+                            <div class="metric-value text-danger" id="metric-stock-critico">2 prod.</div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card border-0 shadow-sm p-3">
-                            <div class="text-muted small">Usuarios Registrados</div>
-                            <div class="fs-4 fw-bold text-dark">24</div>
+                        <div class="card p-3 shadow-sm metric-card">
+                            <div class="metric-label">Usuarios Registrados</div>
+                            <div class="metric-value" id="metric-total-user">3</div>
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card border-0 shadow-sm p-3">
-                            <div class="text-muted small">Pedidos Pendientes</div>
-                            <div class="fs-4 fw-bold text-warning">8</div>
+                        <div class="card p-3 shadow-sm metric-card">
+                            <div class="metric-label">Pedidos Activos</div>
+                            <div class="metric-value text-brand-orange" id="metric-pedidos">8</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Sección: Mantenedor de Productos -->
-                <section id="mantenedor-productos" class="mb-5">
+                <!-- SECCIÓN PRODUCTOS -->
+                <section id="seccion-productos" class="mb-5">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h2 class="h4">Inventario de Materiales y Herramientas</h2>
-                        <button class="btn btn-warning text-white fw-semibold">
-                            <i class="bi bi-plus-circle"></i> Nuevo Producto
+                        <h2 class="h4 fw-bold text-brand-dark">Productos</h2>
+                        <button class="btn btn-dark btn-sm fw-bold" id="btn-nuevo-producto">
+                            <i class="bi bi-plus-lg"></i> Agregar Producto
                         </button>
                     </div>
 
-                    <div class="table-responsive bg-white rounded shadow-sm">
-                        <table class="table table-striped table-hover align-middle mb-0">
-                            <thead class="table-dark">
+                    <div class="table-responsive bg-white rounded shadow">
+                        <table class="table table-hover align-middle mb-0 custom-admin-table">
+                            <thead class="bg-brand-dark text-white">
                                 <tr>
-                                    <th>Código</th>
-                                    <th>Producto</th>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
                                     <th>Categoría</th>
                                     <th>Precio</th>
                                     <th>Stock</th>
-                                    <th>Acciones</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tabla-productos-body">
                                 <tr>
-                                    <td>#001</td>
-                                    <td>Taladro Percutor 850W</td>
+                                    <td class="fw-bold">1</td>
+                                    <td class="fw-bold">Taladro Percutor 850W</td>
                                     <td>Herramientas Eléctricas</td>
-                                    <td>$45.990</td>
-                                    <td><span class="badge bg-success">14 un.</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                    <td class="text-brand-orange fw-bold">$89,990</td>
+                                    <td><span class="badge bg-danger">1 uni. (Crítico)</span></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
                                         <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>#002</td>
-                                    <td>Sierra Circular 7 1/4"</td>
+                                    <td class="fw-bold">2</td>
+                                    <td class="fw-bold">Sierra Circular 7¼"</td>
                                     <td>Herramientas Eléctricas</td>
-                                    <td>$62.990</td>
-                                    <td><span class="badge bg-danger">2 un. (Bajo)</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                    <td class="text-brand-orange fw-bold">$124,990</td>
+                                    <td><span class="badge bg-warning text-dark">4 uni. (Bajo)</span></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">3</td>
+                                    <td class="fw-bold">Martillo Antivibraciones Stanley</td>
+                                    <td>Herramientas Manuales</td>
+                                    <td class="text-brand-orange fw-bold">$36,990</td>
+                                    <td><span class="badge bg-success">14 uni. (Normal)</span></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">4</td>
+                                    <td class="fw-bold">Juego de Destornilladores</td>
+                                    <td>Herramientas Manuales</td>
+                                    <td class="text-brand-orange fw-bold">$5,490</td>
+                                    <td><span class="badge bg-success">30 uni. (Normal)</span></td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
                                         <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>
@@ -143,47 +178,58 @@
                     </div>
                 </section>
 
-                <!-- Sección: Mantenedor de Usuarios -->
-                <section id="mantenedor-usuarios">
+                <!-- SECCIÓN USUARIOS -->
+                <section id="seccion-usuarios" class="mb-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h2 class="h4">Gestión de Usuarios y Roles</h2>
-                        <button class="btn btn-dark btn-sm">
+                        <h2 class="h4 fw-bold text-brand-dark">Usuarios</h2>
+                        <button class="btn btn-dark btn-sm fw-bold" id="btn-nuevo-usuario">
                             <i class="bi bi-person-plus"></i> Crear Usuario
                         </button>
                     </div>
 
-                    <div class="table-responsive bg-white rounded shadow-sm">
-                        <table class="table table-striped table-hover align-middle mb-0">
-                            <thead class="table-dark">
+                    <div class="table-responsive bg-white rounded shadow">
+                        <table class="table table-hover align-middle mb-0 custom-admin-table">
+                            <thead class="bg-brand-dark text-white">
                                 <tr>
                                     <th>RUT</th>
-                                    <th>Nombre</th>
+                                    <th>Nombre Completo</th>
                                     <th>Correo</th>
-                                    <th>Rol Asignado</th>
-                                    <th>Estado</th>
-                                    <th>Acciones</th>
+                                    <th>Rol</th>
+                                    <th>Comuna</th>
+                                    <th class="text-center">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="tabla-usuarios-body">
                                 <tr>
-                                    <td>12345678-5</td>
-                                    <td>Carlos Pérez</td>
+                                    <td class="fw-bold">18234567-8</td>
+                                    <td class="fw-bold">Carlos Muñoz</td>
                                     <td>carlos@ferreteria.cl</td>
                                     <td><span class="badge bg-primary">Administrador</span></td>
-                                    <td><span class="badge bg-success">Activo</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                    <td>La Serena</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
                                         <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-lock"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>98765432-1</td>
-                                    <td>Constructora El Sol</td>
-                                    <td>contacto@elsol.cl</td>
+                                    <td class="fw-bold">15432987-K</td>
+                                    <td class="fw-bold">Constructora Coquimbo</td>
+                                    <td>obras@coquimbo.cl</td>
                                     <td><span class="badge bg-warning text-dark">Contratista</span></td>
-                                    <td><span class="badge bg-success">Activo</span></td>
-                                    <td>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="bi bi-pencil"></i></button>
+                                    <td>Coquimbo</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
+                                        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-lock"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">20123456-7</td>
+                                    <td class="fw-bold">Felipe Gutiérrez</td>
+                                    <td>felipe@ferreteria.cl</td>
+                                    <td><span class="badge badge-vendedor">Vendedor</span></td>
+                                    <td>La Serena</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-primary me-1"><i class="bi bi-pencil"></i></button>
                                         <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-lock"></i></button>
                                     </td>
                                 </tr>
@@ -196,8 +242,11 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts JavaScript Propios -->
+    <script src="js/utils.js"></script>
     <script src="js/admin.js"></script>
 </body>
 </html>
