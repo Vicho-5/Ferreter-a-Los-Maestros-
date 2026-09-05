@@ -1,90 +1,173 @@
-let productos = [
+const productosBase = [
     {
         id: 1,
+        codigo: "HE001",
+        categoria: "Herramientas",
+        subcategoria: "Eléctricas",
         nombre: "Taladro Percutor 850W",
         marca: "BOSCH",
-        precio: 124900,
+        unidad: "Unidad",
+        precioCompra: 75000,
+        precio: 124900, // Este es el Precio Venta
+        stock: 5,
+        stockMinimo: 2,
         imagen: "img/prod_2_taladro-percutor.jpg",
         descripcion: "Taladro percutor ideal para concreto y mampostería.",
     },
     {
         id: 2,
+        codigo: "HE002",
+        categoria: "Herramientas",
+        subcategoria: "Eléctricas",
         nombre: 'Sierra Circular 7¼"',
         marca: "DEWALT",
+        unidad: "Unidad",
+        precioCompra: 150000,
         precio: 235000,
+        stock: 5,
+        stockMinimo: 2,
         imagen: "img/prod_1_sierra-circular.jpg",
         descripcion:
             "Sierra circular de alta potencia para cortes precisos en madera.",
     },
     {
         id: 3,
+        codigo: "HE003",
+        categoria: "Herramientas",
+        subcategoria: "Eléctricas",
         nombre: 'Esmeril Angular 4.5"',
         marca: "MAKITA",
+        unidad: "Unidad",
+        precioCompra: 55000,
         precio: 89990,
+        stock: 5,
+        stockMinimo: 2,
         imagen: "img/prod_3_esmeril-angular.jpg",
         descripcion:
             "Esmeril compacto y ligero, ideal para cortes en metal y desbaste.",
     },
     {
         id: 4,
+        codigo: "HM001",
+        categoria: "Herramientas",
+        subcategoria: "Manuales",
         nombre: "Set de Herramientas",
         marca: "STANLEY",
+        unidad: "Set",
+        precioCompra: 28000,
         precio: 45000,
+        stock: 5,
+        stockMinimo: 3,
         imagen: "img/prod_4_caja-herramientas.jpg",
         descripcion:
             "Maletín completo con dados, llaves, destornilladores y alicates.",
     },
     {
         id: 5,
+        codigo: "HM002",
+        categoria: "Herramientas",
+        subcategoria: "Manuales",
         nombre: "Huincha de medir 8m",
         marca: "BAHCO",
+        unidad: "Unidad",
+        precioCompra: 6500,
         precio: 12500,
+        stock: 5,
+        stockMinimo: 5,
         imagen: "img/prod_5_huincha.jpg",
         descripcion:
             "Cinta métrica resistente a impactos con recubrimiento de nylon.",
     },
     {
         id: 6,
+        codigo: "HM003",
+        categoria: "Herramientas",
+        subcategoria: "Manuales",
         nombre: "Martillo Galponero",
         marca: "TRUPER",
+        unidad: "Unidad",
+        precioCompra: 4500,
         precio: 9500,
+        stock: 5,
+        stockMinimo: 5,
         imagen: "img/prod_6_martillo.jpg",
         descripcion: "Martillo de acero forjado con mango ergonómico.",
     },
     {
         id: 7,
+        codigo: "HE004",
+        categoria: "Herramientas",
+        subcategoria: "Eléctricas",
         nombre: "Nivel Láser Cruzado",
         marca: "BOSCH",
+        unidad: "Unidad",
+        precioCompra: 70000,
         precio: 115000,
+        stock: 5,
+        stockMinimo: 2,
         imagen: "img/prod_7_laser.jpg",
         descripcion:
             "Nivel láser autonivelante para alineación perfecta en interiores.",
     },
     {
         id: 8,
+        codigo: "MC001",
+        categoria: "Materiales",
+        subcategoria: "Fijaciones",
         nombre: 'Caja de Clavos Acero 2"',
         marca: "INCHALAM",
+        unidad: "Caja 1kg",
+        precioCompra: 2200,
         precio: 4500,
+        stock: 5,
+        stockMinimo: 10,
         imagen: "img/prod_8_clavos.jpg",
         descripcion: "Caja de 1kg de clavos de acero para concreto.",
     },
     {
         id: 9,
+        codigo: "HE005",
+        categoria: "Herramientas",
+        subcategoria: "Eléctricas",
         nombre: "Soldadora Inverter 120A",
         marca: "INDURA",
+        unidad: "Unidad",
+        precioCompra: 105000,
         precio: 165000,
+        stock: 5,
+        stockMinimo: 2,
         imagen: "img/prod_9_soldadora.jpg",
         descripcion: "Máquina de soldar compacta, tecnología IGBT.",
     },
     {
         id: 10,
+        codigo: "HM004",
+        categoria: "Herramientas",
+        subcategoria: "Manuales",
         nombre: 'Alicate Universal 8"',
         marca: "STANLEY",
+        unidad: "Unidad",
+        precioCompra: 4200,
         precio: 8900,
+        stock: 5,
+        stockMinimo: 5,
         imagen: "img/prod_10_alicate.jpg",
         descripcion: "Alicate de acero al carbono con mango antideslizante.",
     },
 ];
+
+// 2. Le decimos a JavaScript que busque el catálogo en la memoria del navegador
+let productos = [];
+const catalogoGuardado = localStorage.getItem("inventarioFerreteria");
+
+if (catalogoGuardado) {
+    // Si ya existe (porque el admin agregó/modificó algo), usamos ese
+    productos = JSON.parse(catalogoGuardado);
+} else {
+    // Si no existe, usamos el arreglo base y lo guardamos para el admin
+    productos = productosBase;
+    localStorage.setItem("inventarioFerreteria", JSON.stringify(productos));
+}
 
 // 2. Función para pintar los productos destacados en el index
 function cargarDestacados() {
@@ -202,13 +285,11 @@ cargarDetalle();
 
 // Función para agregar el producto actual al carrito
 function agregarCarrito() {
-    // 1. Recuperar el producto que el usuario está viendo en detalle
     const productoString = localStorage.getItem("producto");
     if (!productoString) return;
 
     const productoActual = JSON.parse(productoString);
 
-    // 2. Recuperar el carrito existente desde LocalStorage (o crear un arreglo vacío si es la primera vez)
     let carrito = [];
     const carritoString = localStorage.getItem("carrito");
 
@@ -216,25 +297,33 @@ function agregarCarrito() {
         carrito = JSON.parse(carritoString);
     }
 
-    // 3. Verificar si el producto ya está en el carrito para no duplicarlo
+    // Buscamos si el producto ya está en el carrito
     let productoExiste = false;
     for (let i = 0; i < carrito.length; i++) {
         if (carrito[i].id === productoActual.id) {
+            // Nueva validación de stock
+            if (carrito[i].cantidad >= productoActual.stock) {
+                alert(
+                    "No puedes agregar más unidades, límite de stock alcanzado.",
+                );
+                return; // Detiene la función y no suma nada
+            }
+
+            carrito[i].cantidad += 1;
             productoExiste = true;
             break;
         }
     }
 
-    if (productoExiste) {
-        alert("Este producto ya se encuentra en tu carrito.");
-        return; // Detiene la función
+    // Si no existía, le asignamos cantidad 1 y lo metemos al arreglo
+    if (!productoExiste) {
+        productoActual.cantidad = 1;
+        carrito.push(productoActual);
     }
 
-    // 4. Agregar el producto al arreglo y guardarlo nuevamente en LocalStorage
-    carrito.push(productoActual);
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    alert("¡Producto agregado a tu carrito con éxito!");
+    alert("¡Producto agregado a tu carrito!");
     renderizarCarrito();
 }
 
@@ -244,8 +333,9 @@ function agregarCarrito() {
 function renderizarCarrito() {
     const contenedor = document.getElementById("contenedor-items-carrito");
     const elementoTotal = document.getElementById("total-carrito");
+    const contadorNav = document.getElementById("contador-carrito");
+    const contadorOffcanvas = document.getElementById("contador-offcanvas");
 
-    // Si la página no tiene el offcanvas, detenemos la función
     if (!contenedor || !elementoTotal) return;
 
     let carrito = [];
@@ -254,7 +344,19 @@ function renderizarCarrito() {
         carrito = JSON.parse(carritoString);
     }
 
-    // Si está vacío, mostramos mensaje
+    // Calculamos cuántos artículos en total hay (sumando las cantidades)
+    let cantidadTotalArticulos = 0;
+    for (let i = 0; i < carrito.length; i++) {
+        // Aseguramos que la propiedad cantidad exista (por si quedaron productos viejos guardados)
+        if (!carrito[i].cantidad) carrito[i].cantidad = 1;
+        cantidadTotalArticulos += carrito[i].cantidad;
+    }
+
+    // Actualizamos AMBOS contadores
+    if (contadorNav) contadorNav.textContent = cantidadTotalArticulos;
+    if (contadorOffcanvas)
+        contadorOffcanvas.textContent = cantidadTotalArticulos;
+
     if (carrito.length === 0) {
         contenedor.innerHTML =
             '<p class="text-muted text-center mt-4">Tu carrito está vacío.</p>';
@@ -263,19 +365,23 @@ function renderizarCarrito() {
     }
 
     contenedor.innerHTML = "";
-    let total = 0;
+    let totalPrecio = 0;
 
-    // Recorrer el carrito, sumar precios y pintar HTML
     for (let i = 0; i < carrito.length; i++) {
-        total += carrito[i].precio; // Sumatoria para el total
+        // Multiplicamos el precio por la cantidad que lleva el usuario
+        let subtotalProducto = carrito[i].precio * carrito[i].cantidad;
+        totalPrecio += subtotalProducto;
 
         contenedor.innerHTML += `
             <div class="card border-0 shadow-sm mb-3">
                 <div class="card-body d-flex align-items-center">
                     <img src="${carrito[i].imagen}" alt="${carrito[i].nombre}" class="rounded me-3" style="width: 60px; height: 60px; object-fit: cover;">
                     <div class="flex-grow-1">
-                        <h6 class="fw-bold mb-1">${carrito[i].nombre}</h6>
-                        <p class="text-brand-orange fw-bold mb-0">$${carrito[i].precio.toLocaleString("es-CL")}</p>
+                        <h6 class="fw-bold mb-1">
+                            ${carrito[i].nombre} 
+                            <span class="badge bg-secondary ms-1">x${carrito[i].cantidad}</span>
+                        </h6>
+                        <p class="text-brand-orange fw-bold mb-0">$${subtotalProducto.toLocaleString("es-CL")}</p>
                     </div>
                     <button class="btn btn-sm btn-danger ms-2" onclick="eliminarDelCarrito(${carrito[i].id})">X</button>
                 </div>
@@ -283,7 +389,7 @@ function renderizarCarrito() {
         `;
     }
 
-    elementoTotal.textContent = "$" + total.toLocaleString("es-CL");
+    elementoTotal.textContent = "$" + totalPrecio.toLocaleString("es-CL");
 }
 
 // 2. Eliminar un solo producto

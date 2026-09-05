@@ -86,13 +86,19 @@
                             </li>
                             <li class="nav-item ms-lg-3">
                                 <a
-                                    class="nav-link text-brand-white fw-bold"
+                                    class="nav-link text-brand-white fw-bold d-flex align-items-center"
                                     data-bs-toggle="offcanvas"
                                     href="#carritoOffcanvas"
                                     role="button"
                                     aria-controls="carritoOffcanvas"
                                 >
                                     🛒 Mi Carrito
+                                    <!-- Burbuja con el contador -->
+                                    <span
+                                        id="contador-carrito"
+                                        class="badge bg-danger rounded-pill ms-2"
+                                        >0</span
+                                    >
                                 </a>
                             </li>
                             <li class="nav-item ms-lg-3">
@@ -166,8 +172,16 @@
             aria-labelledby="carritoOffcanvasLabel"
         >
             <div class="offcanvas-header bg-brand-dark text-white">
-                <h5 class="offcanvas-title fw-bold" id="carritoOffcanvasLabel">
+                <h5
+                    class="offcanvas-title fw-bold d-flex align-items-center"
+                    id="carritoOffcanvasLabel"
+                >
                     Mi Lista de Productos
+                    <span
+                        id="contador-offcanvas"
+                        class="badge bg-secondary ms-2"
+                        >0</span
+                    >
                 </h5>
                 <button
                     type="button"
@@ -211,12 +225,60 @@
         </div>
 
         <!-- PIE DE PÁGINA -->
-        <footer class="footer-custom py-4 text-center text-white">
-            <div class="container">
-                <p class="mb-0">
-                    &copy; 2026 Ferretería Los Maestros. Todos los derechos
-                    reservados.
+        <footer class="footer-custom bg-brand-dark py-4">
+            <div
+                class="container d-flex flex-wrap justify-content-between align-items-center"
+            >
+                <!-- Columna Izquierda: Copyright -->
+                <p class="col-md-4 mb-0 fw-bold text-white">
+                    © 2026 Ferretería Los Maestros
                 </p>
+
+                <!-- Columna Central: Logo -->
+                <a
+                    href="/Ferreter-a-Los-Maestros-/index.html"
+                    class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto text-decoration-none"
+                >
+                    <img
+                        src="/Ferreter-a-Los-Maestros-/img/favicon-ferreteria.png"
+                        alt="Logo FM"
+                        width="50"
+                        height="40"
+                        class="rounded"
+                    />
+                </a>
+
+                <!-- Columna Derecha: Enlaces de navegación -->
+                <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item">
+                        <a
+                            href="/Ferreter-a-Los-Maestros-/index.html#inicio"
+                            class="nav-link px-2 text-white"
+                            >Inicio</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href="/Ferreter-a-Los-Maestros-/catalogo.html"
+                            class="nav-link px-2 text-white"
+                            >Productos</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href="/Ferreter-a-Los-Maestros-/index.html#nosotros"
+                            class="nav-link px-2 text-white"
+                            >Nosotros</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                            href="/Ferreter-a-Los-Maestros-/index.html#contacto"
+                            class="nav-link px-2 text-white"
+                            >Contacto</a
+                        >
+                    </li>
+                </ul>
             </div>
         </footer>
 
