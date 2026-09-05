@@ -1,0 +1,415 @@
+/* CONTENEDOR PRINCIPAL */
+
+main {
+    background-color: var(--color-brand-muted);
+}
+
+main article {
+    max-width: 430px;
+}
+
+/* ENCABEZADO */
+
+header > a {
+    color: var(--color-brand-dark);
+}
+
+header > a:hover {
+    color: var(--color-brand-dark);
+}
+
+/* Logo */
+.logo-placeholder {
+    width: 32px;
+    height: 32px;
+
+    background-color: var(--color-brand-orange);
+    color: white;
+
+    font-size: 0.9rem;
+}
+
+/* Nombre de la ferretería */
+header > a span:last-child {
+    color: var(--color-brand-dark);
+
+    font-size: 0.85rem;
+    letter-spacing: -0.02rem;
+}
+
+/* TÍTULO DEL LOGIN */
+
+#titulo-login {
+    color: var(--color-brand-dark);
+
+    font-size: 2rem;
+    text-transform: uppercase;
+}
+
+/* Texto descriptivo */
+header > p {
+    color: var(--color-brand-steel);
+    line-height: 1.5;
+}
+
+/* FORMULARIO */
+#form-login {
+    color: var(--color-brand-dark);
+}
+
+
+/* Labels */
+#form-login .form-label {
+    color: var(--color-brand-grey);
+
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08rem;
+}
+
+/* CAMPOS DEL FORMULARIO */
+
+#form-login .input-group-text,
+#form-login .form-control,
+#btn-mostrar-contrasena {
+    min-height: 48px;
+
+    border-color: #d1d5db;
+    border-radius: 0;
+}
+
+/* Iconos de correo y contraseña */
+
+#form-login .input-group-text {
+    background-color: white;
+    color: var(--color-brand-steel);
+
+    border-right: 0;
+}
+
+/* Inputs */
+
+#form-login .form-control {
+    color: var(--color-brand-dark);
+
+    border-left: 0;
+}
+
+/* Placeholder */
+
+#form-login .form-control::placeholder {
+    color: #9ca3af;
+}
+
+/* Evita sombra azul */
+#form-login .form-control:focus {
+    border-color: var(--color-brand-orange);
+    box-shadow: none;
+}
+
+/* Cuando el input recibe foco, también resaltamos el icono */
+#form-login .input-group:focus-within .input-group-text {
+    border-color: var(--color-brand-orange);
+}
+
+/* BOTÓN MOSTRAR CONTRASEÑA */
+
+#btn-mostrar-contrasena {
+    background-color: white;
+    color: var(--color-brand-steel);
+
+    border-left: 0;
+}
+
+#btn-mostrar-contrasena:hover {
+    background-color: white;
+    color: var(--color-brand-dark);
+
+    border-color: #d1d5db;
+}
+
+/* OLVIDÉ MI CONTRASEÑA */
+
+#form-login a {
+    color: var(--color-brand-orange);
+}
+
+#form-login a:hover {
+    color: var(--color-brand-orange-light);
+}
+
+/* CHECKBOX */
+
+#mantener-sesion {
+    border-color: var(--color-brand-steel);
+}
+
+
+/* Checkbox seleccionado */
+#mantener-sesion:checked {
+    background-color: var(--color-brand-orange);
+    border-color: var(--color-brand-orange);
+}
+
+
+/* Evitamos sombra azul */
+#mantener-sesion:focus {
+    border-color: var(--color-brand-orange);
+    box-shadow: none;
+}
+
+
+/* Texto del checkbox */
+.form-check-label {
+    color: var(--color-brand-grey);
+}
+
+/* BOTÓN INGRESAR */
+
+#btn-ingresar {
+    background-color: var(--color-brand-orange);
+    border-color: var(--color-brand-orange);
+
+    color: white;
+
+    border-radius: 0;
+
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+}
+
+
+/* Hover del botón */
+#btn-ingresar:hover {
+    background-color: var(--color-brand-orange-light);
+    border-color: var(--color-brand-orange-light);
+}
+
+
+/* Cuando el usuario hace clic */
+#btn-ingresar:active {
+    background-color: var(--color-brand-orange) !important;
+    border-color: var(--color-brand-orange) !important;
+}
+
+
+/* Quitamos la sombra azul */
+#btn-ingresar:focus {
+    box-shadow: none;
+}
+
+/* SEPARADOR "O" */
+
+#form-login hr {
+    border-color: #d1d5db;
+    opacity: 1;
+}
+
+/* REGISTRO */
+
+#form-login > p {
+    color: var(--color-brand-steel);
+}
+
+/* FOOTER */
+
+footer a {
+    color: var(--color-brand-steel);
+}
+
+footer a:hover {
+    color: var(--color-brand-orange);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 576px) {
+
+    main {
+        align-items: flex-start !important;
+    }
+
+    main article {
+        max-width: 100%;
+    }
+
+    #titulo-login {
+        font-size: 1.7rem;
+    }
+
+    header > a {
+        margin-bottom: 2rem !important;
+    }
+
+}
+
+/* BOTÓN DE RECUPERACIÓN*/
+#btn-recuperar {
+    background-color: var(--color-brand-orange);
+    border-color: var(--color-brand-orange);
+    color: white;
+}
+
+#btn-recuperar:hover {
+    background-color: var(--color-brand-orange-light);
+    border-color: var(--color-brand-orange-light);
+    color: white;
+}
+
+#btn-recuperar:active {
+    background-color: var(--color-brand-orange) !important;
+    border-color: var(--color-brand-orange) !important;
+}
+
+#btn-recuperar:focus {
+    box-shadow: none;
+}
+
+/* ICONOS DE VALIDACIÓN DEBIDO A QUE CHROME APLICA ESTILOS PROPIOS CAUNDO SE AUTOCOMPLETA UN CAMPO */
+/* CHROME TERMINA TAPANDO VISUALMENTE DONDE BOOTSTRAP O NUESTRO CSS INTENTA DIBUJAR */
+
+/* El grupo servirá como referencia para posicionar el icono */
+#form-login .input-group {
+    position: relative;
+}
+
+
+/* Quitar los iconos que Bootstrap intenta poner dentro del input */
+#form-login .form-control.is-valid,
+#form-login .form-control.is-invalid,
+#form-login .form-control.is-valid:-webkit-autofill,
+#form-login .form-control.is-invalid:-webkit-autofill {
+    background-image: none !important;
+}
+
+
+/* CORREO VÁLIDO */
+
+#form-login .input-group:has(#correo.is-valid)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0.75rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* CORREO INVÁLIDO */
+
+#form-login .input-group:has(#correo.is-invalid)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0.75rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* CONTRASEÑA VÁLIDA */
+
+#form-login .input-group:has(#contrasena.is-valid)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 3.25rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* CONTRASEÑA INVÁLIDA */
+
+#form-login .input-group:has(#contrasena.is-invalid)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 3.25rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+/* DETECTAR AUTOCOMPLETADO DEL NAVEGADOR */
+
+@keyframes autofillDetectado {
+
+    from {
+        opacity: 0.99;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+#correo:-webkit-autofill,
+#contrasena:-webkit-autofill {
+
+    animation-name: autofillDetectado;
+    animation-duration: 0.01s;
+
+}
+

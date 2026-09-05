@@ -1,0 +1,719 @@
+/* CONTENIDO GENERAL */
+
+main {
+    background-color: var(--color-brand-muted);
+    min-height: 100vh;
+}
+
+main article {
+    max-width: 850px;
+}
+
+/* LOGO Y ENCABEZADO */
+
+header > a {
+    color: var(--color-brand-dark);
+}
+
+header > a:hover {
+    color: var(--color-brand-dark);
+}
+
+.logo-placeholder {
+    width: 32px;
+    height: 32px;
+
+    background-color: var(--color-brand-orange);
+    color: white;
+
+    font-size: 0.9rem;
+}
+
+header > a span:last-child {
+    color: var(--color-brand-dark);
+
+    font-size: 0.85rem;
+    letter-spacing: -0.02rem;
+}
+
+/* TÍTULO PRINCIPAL */
+#titulo-registro {
+    color: var(--color-brand-dark);
+
+    font-size: 2rem;
+
+    text-transform: uppercase;
+}
+
+/* DESCRIPCIÓN BAJO EL TÍTULO */
+header > p {
+    color: var(--color-brand-steel);
+
+    line-height: 1.5;
+}
+
+/* FORMULARIO */
+
+#form-registro {
+    color: var(--color-brand-dark);
+}
+
+/* FIELDSET Y LEGEND */
+
+#form-registro fieldset {
+    padding: 1.5rem;
+
+    background-color: white;
+
+    border: 1px solid #e5e7eb;
+}
+
+#form-registro legend {
+    color: var(--color-brand-dark);
+
+    font-size: 1rem;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+/* LABELS */
+
+#form-registro .form-label {
+    color: var(--color-brand-grey);
+
+    font-size: 0.8rem;
+
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+}
+
+/* INPUTS, SELECT Y TEXTAREA */
+
+#form-registro .form-control,
+#form-registro .form-select,
+#form-registro .input-group-text,
+#btn-mostrar-contrasena-registro,
+#btn-mostrar-confirmacion {
+    min-height: 48px;
+
+    border-color: #d1d5db;
+    border-radius: 0;
+}
+
+/* CAMPOS NORMALES */
+
+#form-registro .form-control,
+#form-registro .form-select {
+    color: var(--color-brand-dark);
+
+    background-color: white;
+}
+
+/* TEXTO PLACEHOLDER */
+#form-registro .form-control::placeholder {
+    color: #9ca3af;
+}
+
+/* ICONOS DE LOS INPUTS */
+
+#form-registro .input-group-text {
+    background-color: white;
+
+    color: var(--color-brand-steel);
+
+    border-right: 0;
+}
+
+#form-registro .input-group .input-group-text + .form-control {
+    border-left: 0;
+}
+
+/* BOTONES PARA MOSTRAR CONTRASEÑA */
+
+#btn-mostrar-contrasena-registro,
+#btn-mostrar-confirmacion {
+    background-color: white;
+
+    color: var(--color-brand-steel);
+
+    border-left: 0;
+}
+
+#btn-mostrar-contrasena-registro:hover,
+#btn-mostrar-confirmacion:hover {
+    background-color: white;
+
+    color: var(--color-brand-dark);
+
+    border-color: #d1d5db;
+}
+
+/* FOCUS DE CAMPO */
+
+#form-registro .form-control:focus,
+#form-registro .form-select:focus {
+    border-color: var(--color-brand-orange);
+
+    box-shadow: none;
+}
+
+/* CAMBIAR BORDE DEL ICONO */
+
+#form-registro .input-group:focus-within .input-group-text {
+    border-color: var(--color-brand-orange);
+}
+
+/* BOTON DEL OJO CUANDO EL INPUT TIENE FOCO */
+
+#form-registro .input-group:focus-within
+#btn-mostrar-contrasena-registro,
+#form-registro .input-group:focus-within
+#btn-mostrar-confirmacion {
+    border-color: var(--color-brand-orange);
+}
+
+/* TEXTAREA */
+
+#direccion {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+/* SELECT DESHABILITADO */
+
+#form-registro .form-select:disabled {
+    background-color: var(--color-brand-muted);
+
+    color: var(--color-brand-steel);
+}
+
+/* TEXTOS DE AYUDA Y ERRORES */
+
+#form-registro small {
+    font-size: 0.8rem;
+}
+
+#form-registro .text-secondary {
+    color: var(--color-brand-steel) !important;
+}
+
+/* BOTÓN CREAR CUENTA */
+
+#btn-registrar {
+    background-color: var(--color-brand-orange);
+
+    border-color: var(--color-brand-orange);
+
+    color: white;
+
+    border-radius: 0;
+
+    text-transform: uppercase;
+    letter-spacing: 0.02rem;
+}
+
+/* PASAR MOUSE ENCIMA, BRILLA POR ELECCIÓN*/
+
+#btn-registrar:hover {
+    background-color: var(--color-brand-orange-light);
+
+    border-color: var(--color-brand-orange-light);
+
+    color: white;
+}
+
+/*  MIENTRAS SE PRESIONA EL BOTÓN */
+
+#btn-registrar:active {
+    background-color: var(--color-brand-orange) !important;
+
+    border-color: var(--color-brand-orange) !important;
+
+    color: white !important;
+}
+
+
+#btn-registrar:focus {
+    box-shadow: none;
+}
+
+/* ENLACES DEL FORMULARIO */
+
+#form-registro a {
+    color: var(--color-brand-orange);
+
+    text-decoration: none;
+}
+
+#form-registro a:hover {
+    color: var(--color-brand-orange-light);
+}
+
+/* FOOTER */
+
+footer a {
+    color: var(--color-brand-steel);
+}
+
+footer a:hover {
+    color: var(--color-brand-orange);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 576px) {
+
+    main {
+        padding-top: 2rem !important;
+    }
+
+    main article {
+        max-width: 100%;
+    }
+
+    #titulo-registro {
+        font-size: 1.7rem;
+    }
+
+    header > a {
+        margin-bottom: 2rem !important;
+    }
+
+    #form-registro fieldset {
+        padding: 1rem;
+    }
+
+}
+/* MODAL REGISTRO EXITOSO */
+
+#modal-registro-exitoso .modal-content {
+    border: none;
+    border-radius: 0;
+}
+
+
+/* Icono de éxito */
+.icono-registro-exitoso {
+    color: var(--color-brand-green);
+
+    font-size: 4rem;
+}
+
+
+/* Título */
+#titulo-modal-exito {
+    color: var(--color-brand-dark);
+
+    font-size: 1.6rem;
+}
+
+
+/* Botón ir al Login */
+#btn-ir-login {
+    background-color: var(--color-brand-orange);
+
+    border-color: var(--color-brand-orange);
+
+    color: white;
+
+    border-radius: 0;
+
+    text-transform: uppercase;
+}
+
+
+/* Mouse encima */
+#btn-ir-login:hover {
+    background-color: var(--color-brand-orange-light);
+
+    border-color: var(--color-brand-orange-light);
+
+    color: white;
+}
+
+
+/* Mientras se presiona */
+#btn-ir-login:active {
+    background-color: var(--color-brand-orange) !important;
+
+    border-color: var(--color-brand-orange) !important;
+
+    color: white !important;
+}
+
+
+/* Focus */
+#btn-ir-login:focus {
+    box-shadow: none;
+}
+
+/*  ICONOS DE VALIDACIÓN PERSONALIZADOS */
+
+/* Campo correcto */
+#form-registro .form-control.is-valid,
+#form-registro .form-select.is-valid {
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+
+    background-position: right 0.75rem center;
+
+    background-size: 20px 20px;
+}
+
+
+/* Campo incorrecto */
+#form-registro .form-control.is-invalid,
+#form-registro .form-select.is-invalid {
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+
+    background-position: right 0.75rem center;
+
+    background-size: 20px 20px;
+}
+
+/* AUTOCOMPLETADO DEL REGISTRO */
+
+@keyframes autofillDetectadoRegistro {
+
+    from {
+        opacity: 0.99;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+#nombre:-webkit-autofill,
+#apellidos:-webkit-autofill,
+#correo-registro:-webkit-autofill,
+#contrasena-registro:-webkit-autofill,
+#confirmar-contrasena:-webkit-autofill {
+
+    animation-name: autofillDetectadoRegistro;
+    animation-duration: 0.01s;
+
+}
+
+
+/* ICONOS DE VALIDACIÓN EN INPUT-GROUP */
+
+#form-registro .input-group {
+    position: relative;
+}
+
+
+/* Quitar el icono interno de Bootstrap solamente en los campos que tienen iconos/botones */
+#correo-registro.is-valid,
+#correo-registro.is-invalid,
+#contrasena-registro.is-valid,
+#contrasena-registro.is-invalid,
+#confirmar-contrasena.is-valid,
+#confirmar-contrasena.is-invalid {
+
+    background-image: none !important;
+
+}
+
+
+/* CORREO VÁLIDO */
+
+#form-registro .input-group:has(#correo-registro.is-valid)::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 0.75rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+}
+
+
+/* CORREO INVÁLIDO */
+
+#form-registro .input-group:has(#correo-registro.is-invalid)::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 0.75rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+}
+
+
+/* CONTRASEÑA VÁLIDA */
+
+#form-registro .input-group:has(#contrasena-registro.is-valid)::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 3.25rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+}
+
+
+/* CONTRASEÑA INVÁLIDA */
+
+#form-registro .input-group:has(#contrasena-registro.is-invalid)::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 3.25rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+}
+
+
+/* CONFIRMAR CONTRASEÑA VÁLIDA */
+
+#form-registro .input-group:has(#confirmar-contrasena.is-valid)::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 3.25rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+}
+
+
+/* CONFIRMAR CONTRASEÑA INVÁLIDA */
+
+#form-registro .input-group:has(#confirmar-contrasena.is-invalid)::after {
+
+    content: "";
+
+    position: absolute;
+
+    right: 3.25rem;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+
+}
+
+/* ICONOS EXTERNOS PARA NOMBRE Y APELLIDOS CUANDO CHROME AUTOCOMPLETA */
+
+
+/* Los contenedores servirán para posicionar los iconos encima del campo */
+#form-registro .col-md-6:has(#nombre),
+#form-registro .col-md-6:has(#apellidos) {
+    position: relative;
+}
+
+
+/* Quitar icono interno cuando Chrome autocompleta */
+#nombre.is-valid:-webkit-autofill,
+#nombre.is-invalid:-webkit-autofill,
+#apellidos.is-valid:-webkit-autofill,
+#apellidos.is-invalid:-webkit-autofill {
+    background-image: none !important;
+}
+
+
+/* NOMBRE VÁLIDO */
+
+#form-registro .col-md-6:has(#nombre.is-valid:-webkit-autofill)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 1.5rem;
+    top: 3.3rem;
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/*  NOMBRE INVÁLIDO */
+
+#form-registro .col-md-6:has(#nombre.is-invalid:-webkit-autofill)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 1.5rem;
+    top: 3.3rem;
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* APELLIDOS VÁLIDOS */
+
+#form-registro .col-md-6:has(#apellidos.is-valid:-webkit-autofill)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 1.5rem;
+    top: 3.3rem;
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%2316a34a' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M6.5 10l2.2 2.2 4.8-5'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* APELLIDOS INVÁLIDOS */
+
+#form-registro .col-md-6:has(#apellidos.is-invalid:-webkit-autofill)::after {
+    content: "";
+
+    position: absolute;
+
+    right: 1.5rem;
+    top: 3.3rem;
+
+    width: 20px;
+    height: 20px;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none' stroke='%23dc3545' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='10' cy='10' r='7'/%3E%3Cpath d='M10 6.5v4.5'/%3E%3Cpath d='M10 14h.01'/%3E%3C/svg%3E");
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
