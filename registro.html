@@ -491,9 +491,18 @@
                                     maxlength="300"
                                     placeholder="Ej: Avenida Los Maestros 123"
                                     autocomplete="street-address"
-                                    aria-describedby="error-direccion"
+                                    aria-describedby="contador-direccion error-direccion"
                                     required
                                 ></textarea>
+
+                                <div class="d-flex justify-content-end mt-1">
+                                    <small
+                                        id="contador-direccion"
+                                        class="text-secondary"
+                                    >
+                                        0 / 300 caracteres
+                                    </small>
+                                </div>
 
                                 <small
                                     id="error-direccion"
@@ -504,7 +513,7 @@
                             </div>
                         </fieldset>
 
-                        <!-- BOTÓN CREAR CUENTA-->
+                        <!-- BOTÓN CREAR CUENTA -->
 
                         <button
                             type="submit"
@@ -516,8 +525,7 @@
                             <i
                                 class="bi bi-person-plus ms-1"
                                 aria-hidden="true"
-                            >
-                            </i>
+                            ></i>
                         </button>
 
                         <!-- Volver al Login -->
