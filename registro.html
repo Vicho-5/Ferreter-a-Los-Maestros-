@@ -624,9 +624,20 @@
                                 maxlength="300"
                                 placeholder="Ej: Avenida Los Maestros 123"
                                 autocomplete="street-address"
-                                aria-describedby="error-direccion"
+                                aria-describedby="contador-direccion error-direccion"
                                 required
                             ></textarea>
+
+                            <div class="d-flex justify-content-end mt-1">
+
+                                <small
+                                    id="contador-direccion"
+                                    class="text-secondary"
+                                >
+                                    0 / 300 caracteres
+                                </small>
+
+                            </div>
 
 
                             <small

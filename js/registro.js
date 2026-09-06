@@ -16,6 +16,7 @@ const selectRegion = document.querySelector("#region");
 const selectComuna = document.querySelector("#comuna");
 
 const inputDireccion = document.querySelector("#direccion");
+const contadorDireccion = document.querySelector("#contador-direccion");
 
 // MENSAJES DE ERROR
 
@@ -1102,6 +1103,14 @@ inputDireccion.addEventListener(
     "input",
     function () {
 
+        const cantidadCaracteres =
+            inputDireccion.value.length;
+
+
+        contadorDireccion.textContent =
+            `${cantidadCaracteres} / 300 caracteres`;
+
+
         if (inputDireccion.value.trim() === "") {
 
             limpiarEstado(
@@ -1112,6 +1121,7 @@ inputDireccion.addEventListener(
             return;
 
         }
+
 
         validarDireccion();
 

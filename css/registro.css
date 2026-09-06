@@ -178,7 +178,7 @@ header > p {
 #direccion {
     min-height: 100px;
 
-    resize: vertical;
+    resize: none;
 }
 
 /* SELECT DESHABILITADO */
