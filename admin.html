@@ -301,8 +301,9 @@
                         <input type="hidden" id="colab-rut-original">
                         
                         <div class="row g-2 align-items-center mb-2">
-                            <div class="col-md-3"><input type="text" id="colab-rut" class="form-control" placeholder="RUT (Ej: 11222333K)"></div>
-                            <div class="col-md-4"><input type="text" id="colab-nombre" class="form-control" placeholder="Nombre (Máx 50)" maxlength="50"></div>
+                            <!-- AQUÍ ESTÁN LOS MAXLENGTH -->
+                            <div class="col-md-3"><input type="text" id="colab-rut" class="form-control" placeholder="RUT (Ej: 11222333K)" maxlength="9"></div>
+                            <div class="col-md-4"><input type="text" id="colab-nombre" class="form-control" placeholder="Nombre Completo" maxlength="50"></div>
                             <div class="col-md-3"><input type="email" id="colab-correo" class="form-control" placeholder="Correo electrónico" maxlength="100"></div>
                             <div class="col-md-2">
                                 <select id="colab-rol" class="form-select">
@@ -336,6 +337,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
+                                    <!-- AQUÍ ESTÁ EL MAXLENGTH DE DIRECCIÓN -->
                                     <input
                                         type="text"
                                         id="colab-direccion"

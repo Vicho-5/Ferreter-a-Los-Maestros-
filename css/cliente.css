@@ -73,7 +73,7 @@
     /* Si quieres poner una imagen de fondo, se haría aquí */
     background-image:
         linear-gradient(rgba(13, 27, 42, 0.85), rgba(13, 27, 42, 0.85)),
-        url("/Ferreter-a-Los-Maestros-/img/hero-ferreteria.avif");
+        url("/img/hero-ferreteria.avif");
     background-size: cover;
     background-position: center;
 }

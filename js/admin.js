@@ -1,159 +1,18 @@
+// ==========================================
+// 1. ARREGLOS DE DATOS Y LOCALSTORAGE
+// ==========================================
+
 const catalogoBase = [
-    {
-        id: 1,
-        codigo: "HE001",
-        categoria: "Herramientas",
-        subcategoria: "Eléctricas",
-        nombre: "Taladro Percutor 850W",
-        marca: "BOSCH",
-        unidad: "Unidad",
-        precioCompra: 75000,
-        precio: 124900,
-        stock: 5,
-        stockMinimo: 2,
-        imagen: "img/prod_2_taladro-percutor.jpg",
-        descripcion: "Taladro percutor ideal para concreto y mampostería.",
-    },
-    {
-        id: 2,
-        codigo: "HE002",
-        categoria: "Herramientas",
-        subcategoria: "Eléctricas",
-        nombre: 'Sierra Circular 7¼"',
-        marca: "DEWALT",
-        unidad: "Unidad",
-        precioCompra: 150000,
-        precio: 235000,
-        stock: 5,
-        stockMinimo: 2,
-        imagen: "img/prod_1_sierra-circular.jpg",
-        descripcion:
-            "Sierra circular de alta potencia para cortes precisos en madera.",
-    },
-    {
-        id: 3,
-        codigo: "HE003",
-        categoria: "Herramientas",
-        subcategoria: "Eléctricas",
-        nombre: 'Esmeril Angular 4.5"',
-        marca: "MAKITA",
-        unidad: "Unidad",
-        precioCompra: 55000,
-        precio: 89990,
-        stock: 5,
-        stockMinimo: 2,
-        imagen: "img/prod_3_esmeril-angular.jpg",
-        descripcion:
-            "Esmeril compacto y ligero, ideal para cortes en metal y desbaste.",
-    },
-    {
-        id: 4,
-        codigo: "HM001",
-        categoria: "Herramientas",
-        subcategoria: "Manuales",
-        nombre: "Set de Herramientas",
-        marca: "STANLEY",
-        unidad: "Set",
-        precioCompra: 28000,
-        precio: 45000,
-        stock: 5,
-        stockMinimo: 3,
-        imagen: "img/prod_4_caja-herramientas.jpg",
-        descripcion:
-            "Maletín completo con dados, llaves, destornilladores y alicates.",
-    },
-    {
-        id: 5,
-        codigo: "HM002",
-        categoria: "Herramientas",
-        subcategoria: "Manuales",
-        nombre: "Huincha de medir 8m",
-        marca: "BAHCO",
-        unidad: "Unidad",
-        precioCompra: 6500,
-        precio: 12500,
-        stock: 5,
-        stockMinimo: 5,
-        imagen: "img/prod_5_huincha.jpg",
-        descripcion:
-            "Cinta métrica resistente a impactos con recubrimiento de nylon.",
-    },
-    {
-        id: 6,
-        codigo: "HM003",
-        categoria: "Herramientas",
-        subcategoria: "Manuales",
-        nombre: "Martillo Galponero",
-        marca: "TRUPER",
-        unidad: "Unidad",
-        precioCompra: 4500,
-        precio: 9500,
-        stock: 5,
-        stockMinimo: 5,
-        imagen: "img/prod_6_martillo.jpg",
-        descripcion: "Martillo de acero forjado con mango ergonómico.",
-    },
-    {
-        id: 7,
-        codigo: "HE004",
-        categoria: "Herramientas",
-        subcategoria: "Eléctricas",
-        nombre: "Nivel Láser Cruzado",
-        marca: "BOSCH",
-        unidad: "Unidad",
-        precioCompra: 70000,
-        precio: 115000,
-        stock: 5,
-        stockMinimo: 2,
-        imagen: "img/prod_7_laser.jpg",
-        descripcion:
-            "Nivel láser autonivelante para alineación perfecta en interiores.",
-    },
-    {
-        id: 8,
-        codigo: "MC001",
-        categoria: "Materiales",
-        subcategoria: "Fijaciones",
-        nombre: 'Caja de Clavos Acero 2"',
-        marca: "INCHALAM",
-        unidad: "Caja 1kg",
-        precioCompra: 2200,
-        precio: 4500,
-        stock: 5,
-        stockMinimo: 10,
-        imagen: "img/prod_8_clavos.jpg",
-        descripcion: "Caja de 1kg de clavos de acero para concreto.",
-    },
-    {
-        id: 9,
-        codigo: "HE005",
-        categoria: "Herramientas",
-        subcategoria: "Eléctricas",
-        nombre: "Soldadora Inverter 120A",
-        marca: "INDURA",
-        unidad: "Unidad",
-        precioCompra: 105000,
-        precio: 165000,
-        stock: 5,
-        stockMinimo: 2,
-        imagen: "img/prod_9_soldadora.jpg",
-        descripcion: "Máquina de soldar compacta, tecnología IGBT.",
-    },
-    {
-        id: 10,
-        codigo: "HM004",
-        categoria: "Herramientas",
-        subcategoria: "Manuales",
-        nombre: 'Alicate Universal 8"',
-        marca: "STANLEY",
-        unidad: "Unidad",
-        precioCompra: 4200,
-        precio: 8900,
-        stock: 5,
-        stockMinimo: 5,
-        imagen: "img/prod_10_alicate.jpg",
-        descripcion: "Alicate de acero al carbono con mango antideslizante.",
-    },
+    { id: 1, codigo: "HE001", categoria: "Herramientas", subcategoria: "Eléctricas", nombre: "Taladro Percutor 850W", marca: "BOSCH", unidad: "Unidad", precioCompra: 75000, precio: 124900, stock: 5, stockMinimo: 2, imagen: "img/prod_2_taladro-percutor.jpg", descripcion: "Taladro percutor ideal para concreto y mampostería." },
+    { id: 2, codigo: "HE002", categoria: "Herramientas", subcategoria: "Eléctricas", nombre: 'Sierra Circular 7¼"', marca: "DEWALT", unidad: "Unidad", precioCompra: 150000, precio: 235000, stock: 5, stockMinimo: 2, imagen: "img/prod_1_sierra-circular.jpg", descripcion: "Sierra circular de alta potencia para cortes precisos en madera." },
+    { id: 3, codigo: "HE003", categoria: "Herramientas", subcategoria: "Eléctricas", nombre: 'Esmeril Angular 4.5"', marca: "MAKITA", unidad: "Unidad", precioCompra: 55000, precio: 89990, stock: 5, stockMinimo: 2, imagen: "img/prod_3_esmeril-angular.jpg", descripcion: "Esmeril compacto y ligero, ideal para cortes en metal y desbaste." },
+    { id: 4, codigo: "HM001", categoria: "Herramientas", subcategoria: "Manuales", nombre: "Set de Herramientas", marca: "STANLEY", unidad: "Set", precioCompra: 28000, precio: 45000, stock: 5, stockMinimo: 3, imagen: "img/prod_4_caja-herramientas.jpg", descripcion: "Maletín completo con dados, llaves, destornilladores y alicates." },
+    { id: 5, codigo: "HM002", categoria: "Herramientas", subcategoria: "Manuales", nombre: "Huincha de medir 8m", marca: "BAHCO", unidad: "Unidad", precioCompra: 6500, precio: 12500, stock: 5, stockMinimo: 5, imagen: "img/prod_5_huincha.jpg", descripcion: "Cinta métrica resistente a impactos con recubrimiento de nylon." },
+    { id: 6, codigo: "HM003", categoria: "Herramientas", subcategoria: "Manuales", nombre: "Martillo Galponero", marca: "TRUPER", unidad: "Unidad", precioCompra: 4500, precio: 9500, stock: 5, stockMinimo: 5, imagen: "img/prod_6_martillo.jpg", descripcion: "Martillo de acero forjado con mango ergonómico." },
+    { id: 7, codigo: "HE004", categoria: "Herramientas", subcategoria: "Eléctricas", nombre: "Nivel Láser Cruzado", marca: "BOSCH", unidad: "Unidad", precioCompra: 70000, precio: 115000, stock: 5, stockMinimo: 2, imagen: "img/prod_7_laser.jpg", descripcion: "Nivel láser autonivelante para alineación perfecta en interiores." },
+    { id: 8, codigo: "MC001", categoria: "Materiales", subcategoria: "Fijaciones", nombre: 'Caja de Clavos Acero 2"', marca: "INCHALAM", unidad: "Caja 1kg", precioCompra: 2200, precio: 4500, stock: 5, stockMinimo: 10, imagen: "img/prod_8_clavos.jpg", descripcion: "Caja de 1kg de clavos de acero para concreto." },
+    { id: 9, codigo: "HE005", categoria: "Herramientas", subcategoria: "Eléctricas", nombre: "Soldadora Inverter 120A", marca: "INDURA", unidad: "Unidad", precioCompra: 105000, precio: 165000, stock: 5, stockMinimo: 2, imagen: "img/prod_9_soldadora.jpg", descripcion: "Máquina de soldar compacta, tecnología IGBT." },
+    { id: 10, codigo: "HM004", categoria: "Herramientas", subcategoria: "Manuales", nombre: 'Alicate Universal 8"', marca: "STANLEY", unidad: "Unidad", precioCompra: 4200, precio: 8900, stock: 5, stockMinimo: 5, imagen: "img/prod_10_alicate.jpg", descripcion: "Alicate de acero al carbono con mango antideslizante." },
 ];
 
 let productosAdmin = [];
@@ -206,12 +65,6 @@ if (colaboradoresGuardados) {
     ];
     localStorage.setItem("usuarios", JSON.stringify(colaboradoresAdmin));
 }
-
-const datosZonas = {
-    "Metropolitana": ["Santiago", "Conchalí", "Providencia", "Ñuñoa", "Maipú"],
-    "Valparaíso": ["Valparaíso", "Viña del Mar", "Quilpué", "Villa Alemana"],
-    "Coquimbo": ["La Serena", "Coquimbo", "Ovalle", "Illapel"]
-};
 
 // ==========================================
 // 2. FUNCIONES DE PRODUCTOS
@@ -446,7 +299,6 @@ function iniciarSelectRegiones() {
     selectRegion.innerHTML = '<option value="">Seleccione Región...</option>';
     if (typeof regiones !== "undefined") {
         regiones.forEach((region, indice) => {
-            // CORREGIDO CON COMILLAS INVERTIDAS
             selectRegion.innerHTML += `<option value="${indice}">${region.nombre}</option>`;
         });
     }
@@ -461,22 +313,24 @@ function cargarComunasMenu() {
         let indiceRegion = Number(regionSeleccionada);
         let comunas = regiones[indiceRegion].comunas;
         comunas.forEach((comuna) => {
-            // CORREGIDO CON COMILLAS INVERTIDAS
             selectComuna.innerHTML += `<option value="${comuna}">${comuna}</option>`;
         });
     }
 }
 
-// VALIDACIÓN DE RUT
+// VALIDACIÓN DE RUT ESTRICTA Y FUNCIONAL (Módulo 11 real)
 function esRutValido(rutOriginal) {
     const run = rutOriginal.trim().toUpperCase();
+    if (run === "") return false;
+    
+    // Prohibir puntos y guiones
     if (run.includes(".") || run.includes("-")) return false;
+    
+    // Formato básico: varios números y una letra/número final
     const formatoRun = /^\d+[0-9K]$/;
     if (!formatoRun.test(run)) return false;
 
-    return true;
-
-    /* Funcion suspendida para poder testear las validaciones
+    // APLICACIÓN DEL MÓDULO 11
     const cuerpo = run.slice(0, -1);
     const digitoIngresado = run.slice(-1);
     let suma = 0;
@@ -502,7 +356,6 @@ function esRutValido(rutOriginal) {
     }
 
     return digitoIngresado === digitoCalculado;
-    */
 }
 
 function mostrarFormularioColaborador() {
@@ -540,15 +393,22 @@ function guardarColaborador() {
     }
     let comuna = document.getElementById("colab-comuna").value;
 
+    // VALIDACIÓN DE CAMPOS VACÍOS
     if (rut === "" || nombre === "" || correo === "") {
         alert("Rut, nombre y correo son obligatorios.");
         return;
     }
 
+    // VALIDACIÓN ESTRICTA DEL CORREO (Formato @ y .)
+    const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formatoCorreo.test(correo)) {
+        alert("Ingrese un correo electrónico válido (ejemplo: usuario@empresa.cl).");
+        return;
+    }
+
+    // VALIDACIÓN ESTRICTA DEL RUT
     if (!esRutValido(rut)) {
-        alert(
-            "El RUT ingresado no es válido matemáticamente o tiene guión. Escríbalo todo seguido.",
-        );
+        alert("El RUT ingresado no es válido. Ingréselo sin puntos ni guión.");
         return;
     }
 

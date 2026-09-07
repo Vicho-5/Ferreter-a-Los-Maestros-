@@ -437,8 +437,4 @@ const regiones = [
             "Torres del Paine",
         ],
     },
-<<<<<<< HEAD
 ];
-=======
-];
->>>>>>> abc9891f474f673a143cefff8000d76b9de124ac
