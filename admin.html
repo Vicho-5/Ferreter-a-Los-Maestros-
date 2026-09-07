@@ -96,34 +96,35 @@
                         >
                     </div>
 
-                <!-- Tarjetas igualadas con flex-column -->
-                <div class="row g-3 mb-5" id="dashboard">
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
-                            <div class="etiqueta-metrica">Catálogo Total</div>
-                            <div class="valor-metrico" id="metrica-total-productos">0</div>
+                    <!-- Tarjetas de Métricas -->
+                    <div class="row g-3 mb-5" id="dashboard">
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
+                                <div class="etiqueta-metrica">Catálogo Total</div>
+                                <div class="valor-metrico" id="metrica-total-productos">0</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
+                                <div class="etiqueta-metrica">Alertas de Stock</div>
+                                <div class="valor-metrico text-danger fs-6 mt-1" id="metrica-stock-critico">0 alertas rojas</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
+                                <div class="etiqueta-metrica">Usuarios Activos</div>
+                                <div class="valor-metrico" id="metrica-total-colaboradores">0</div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
+                                <div class="etiqueta-metrica">Pedidos Activos</div>
+                                <div class="valor-metrico text-brand-orange" id="metrica-pedidos">8</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
-                            <div class="etiqueta-metrica">Alertas de Stock</div>
-                            <div class="valor-metrico text-danger fs-6 mt-1" id="metrica-stock-critico">0 alertas rojas</div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
-                            <div class="etiqueta-metrica">Usuarios Activos</div>
-                            <div class="valor-metrico" id="metrica-total-colaboradores">0</div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-xl-3">
-                        <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
-                            <div class="etiqueta-metrica">Pedidos Activos</div>
-                            <div class="valor-metrico text-brand-orange" id="metrica-pedidos">8</div>
-                        </div>
-                    </div>
-                </div>
 
+                    <!-- SECCIÓN PRODUCTOS -->
                     <section id="seccion-productos" class="mb-5">
                         <div
                             class="d-flex justify-content-between align-items-center mb-3"
@@ -182,7 +183,7 @@
                                 </div>
                             </div>
 
-                            <div class="row g-2 align-items-center">
+                            <div class="row g-2 align-items-center mb-2">
                                 <div class="col-md-2">
                                     <input
                                         type="text"
@@ -199,7 +200,7 @@
                                         placeholder="Subcategoría"
                                     />
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <input
                                         type="text"
                                         id="producto-unidad"
@@ -207,12 +208,12 @@
                                         placeholder="Unidad"
                                     />
                                 </div>
-                                <div class="col-md-1">
+                                <div class="col-md-2">
                                     <input
                                         type="number"
                                         id="producto-pcompra"
                                         class="form-control"
-                                        placeholder="P.Compra"
+                                        placeholder="P.Compra ($)"
                                         min="0"
                                     />
                                 </div>
@@ -221,7 +222,7 @@
                                         type="number"
                                         id="producto-precio"
                                         class="form-control"
-                                        placeholder="P.Venta"
+                                        placeholder="P.Venta ($)"
                                         min="0"
                                     />
                                 </div>
@@ -243,19 +244,34 @@
                                         min="0"
                                     />
                                 </div>
+                            </div>
 
-                                <div class="col-md-2 text-end">
+                            <!-- NUEVO CAMPO DE DESCRIPCIÓN DEL PRODUCTO -->
+                            <div class="row g-2 align-items-center mb-3">
+                                <div class="col-12">
+                                    <textarea
+                                        id="producto-descripcion"
+                                        class="form-control"
+                                        rows="2"
+                                        placeholder="Descripción detallada del producto que se verá en el catálogo..."
+                                        maxlength="300"
+                                    ></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-12 text-end">
                                     <button
-                                        class="btn btn-secondary btn-sm"
+                                        class="btn btn-secondary btn-sm me-1"
                                         onclick="ocultarFormularioProducto()"
                                     >
-                                        X
+                                        Cancelar
                                     </button>
                                     <button
                                         class="btn btn-success btn-sm"
                                         onclick="guardarProducto()"
                                     >
-                                        Guardar
+                                        Guardar Producto
                                     </button>
                                 </div>
                             </div>
@@ -281,6 +297,7 @@
                         </div>
                     </section>
 
+                    <!-- SECCIÓN USUARIOS -->
                     <section id="seccion-colaboradores" class="mb-4">
                         <div
                             class="d-flex justify-content-between align-items-center mb-3"
@@ -296,23 +313,23 @@
                             </button>
                         </div>
 
-                    <div id="formulario-colaboradores" class="card p-3 mb-3 shadow-sm bg-light" style="display: none;">
-                        <h6 class="fw-bold mb-3">Guardar Usuario</h6>
-                        <input type="hidden" id="colab-rut-original">
-                        
-                        <div class="row g-2 align-items-center mb-2">
-                            <!-- AQUÍ ESTÁN LOS MAXLENGTH -->
-                            <div class="col-md-3"><input type="text" id="colab-rut" class="form-control" placeholder="RUT (Ej: 11222333K)" maxlength="9"></div>
-                            <div class="col-md-4"><input type="text" id="colab-nombre" class="form-control" placeholder="Nombre Completo" maxlength="50"></div>
-                            <div class="col-md-3"><input type="email" id="colab-correo" class="form-control" placeholder="Correo electrónico" maxlength="100"></div>
-                            <div class="col-md-2">
-                                <select id="colab-rol" class="form-select">
-                                    <option value="admin">Administrador</option>
-                                    <option value="cliente">Cliente</option>
-                                    <option value="vendedor">Vendedor</option>
-                                </select>
+                        <div id="formulario-colaboradores" class="card p-3 mb-3 shadow-sm bg-light" style="display: none;">
+                            <h6 class="fw-bold mb-3">Guardar Usuario</h6>
+                            <input type="hidden" id="colab-rut-original">
+                            
+                            <div class="row g-2 align-items-center mb-2">
+                                <!-- LÍMITE DE 9 CARACTERES EN EL RUT -->
+                                <div class="col-md-3"><input type="text" id="colab-rut" class="form-control" placeholder="RUT (Ej: 11222333K)" maxlength="9"></div>
+                                <div class="col-md-4"><input type="text" id="colab-nombre" class="form-control" placeholder="Nombre Completo" maxlength="50"></div>
+                                <div class="col-md-3"><input type="email" id="colab-correo" class="form-control" placeholder="Correo electrónico" maxlength="100"></div>
+                                <div class="col-md-2">
+                                    <select id="colab-rol" class="form-select">
+                                        <option value="admin">Administrador</option>
+                                        <option value="cliente">Cliente</option>
+                                        <option value="vendedor">Vendedor</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
 
                             <div class="row g-2 align-items-center">
                                 <div class="col-md-3">
@@ -337,7 +354,6 @@
                                     </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <!-- AQUÍ ESTÁ EL MAXLENGTH DE DIRECCIÓN -->
                                     <input
                                         type="text"
                                         id="colab-direccion"

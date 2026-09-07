@@ -66,12 +66,39 @@ if (colaboradoresGuardados) {
     localStorage.setItem("usuarios", JSON.stringify(colaboradoresAdmin));
 }
 
+// Normalizador unificado de usuarios
+function obtenerUsuariosNormalizados() {
+    let rawUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    return rawUsuarios.map((u, index) => {
+        let identificador = u.rut || u.run || `USER-${index}`;
+        let nombreCompleto = u.nombre || "";
+        if (u.apellidos) {
+            nombreCompleto = nombreCompleto + " " + u.apellidos;
+        }
+        if (!nombreCompleto.trim()) {
+            nombreCompleto = "Sin Nombre";
+        }
+        return {
+            idUnico: identificador,
+            rut: identificador,
+            nombre: nombreCompleto.trim(),
+            correo: u.correo || "Sin correo",
+            rol: u.rol || "cliente",
+            region: u.region || "N/A",
+            comuna: u.comuna || "N/A",
+            direccion: u.direccion || "",
+            contrasena: u.contrasena || "1234"
+        };
+    });
+}
+
 // ==========================================
 // 2. FUNCIONES DE PRODUCTOS
 // ==========================================
 
 function cargarProductos() {
     let cuerpoTabla = document.getElementById("tabla-productos-cuerpo");
+    if (!cuerpoTabla) return;
     cuerpoTabla.innerHTML = "";
     let alertasCriticas = 0;
 
@@ -109,10 +136,10 @@ function cargarProductos() {
         `;
     }
 
-    document.getElementById("metrica-total-productos").textContent =
-        productosAdmin.length;
-    document.getElementById("metrica-stock-critico").textContent =
-        alertasCriticas + " alertas";
+    let elTotal = document.getElementById("metrica-total-productos");
+    let elCritico = document.getElementById("metrica-stock-critico");
+    if (elTotal) elTotal.textContent = productosAdmin.length;
+    if (elCritico) elCritico.textContent = alertasCriticas + " alertas";
 }
 
 function mostrarFormularioProducto() {
@@ -129,6 +156,8 @@ function mostrarFormularioProducto() {
     document.getElementById("producto-stock").value = "";
     document.getElementById("producto-stockmin").value = "";
     document.getElementById("producto-imagen").value = "";
+    let descInput = document.getElementById("producto-descripcion");
+    if (descInput) descInput.value = "";
 }
 
 function ocultarFormularioProducto() {
@@ -141,9 +170,7 @@ function guardarProducto() {
     let nombre = document.getElementById("producto-nombre").value.trim();
     let marca = document.getElementById("producto-marca").value.trim();
     let categoria = document.getElementById("producto-categoria").value.trim();
-    let subcategoria = document
-        .getElementById("producto-subcategoria")
-        .value.trim();
+    let subcategoria = document.getElementById("producto-subcategoria").value.trim();
     let unidad = document.getElementById("producto-unidad").value.trim();
     let pcompra = document.getElementById("producto-pcompra").value;
     let precio = document.getElementById("producto-precio").value;
@@ -151,36 +178,23 @@ function guardarProducto() {
     let stockmin = document.getElementById("producto-stockmin").value;
 
     let imagenInput = document.getElementById("producto-imagen").value.trim();
-    let imagenFinal =
-        imagenInput !== "" ? imagenInput : "img/favicon-ferreteria.png";
+    let imagenFinal = imagenInput !== "" ? imagenInput : "img/favicon-ferreteria.png";
 
-    if (
-        codigo === "" ||
-        nombre === "" ||
-        marca === "" ||
-        categoria === "" ||
-        precio === "" ||
-        stock === ""
-    ) {
+    let descInput = document.getElementById("producto-descripcion");
+    let descripcionFinal = descInput && descInput.value.trim() !== "" ? descInput.value.trim() : "Sin descripción detallada.";
+
+    if (codigo === "" || nombre === "" || marca === "" || categoria === "" || precio === "" || stock === "") {
         alert("Debe completar los campos principales del producto.");
         return;
     }
 
-    if (
-        Number(pcompra) < 0 ||
-        Number(precio) < 0 ||
-        Number(stock) < 0 ||
-        Number(stockmin) < 0
-    ) {
+    if (Number(pcompra) < 0 || Number(precio) < 0 || Number(stock) < 0 || Number(stockmin) < 0) {
         alert("Los precios y el stock no pueden ser negativos.");
         return;
     }
 
     if (idTexto === "") {
-        let nuevoId =
-            productosAdmin.length > 0
-                ? productosAdmin[productosAdmin.length - 1].id + 1
-                : 1;
+        let nuevoId = productosAdmin.length > 0 ? productosAdmin[productosAdmin.length - 1].id + 1 : 1;
         productosAdmin.push({
             id: nuevoId,
             codigo: codigo,
@@ -194,7 +208,7 @@ function guardarProducto() {
             stock: Number(stock),
             stockMinimo: Number(stockmin),
             imagen: imagenFinal,
-            descripcion: "Producto nuevo",
+            descripcion: descripcionFinal,
         });
     } else {
         let idBuscado = Number(idTexto);
@@ -211,13 +225,11 @@ function guardarProducto() {
             productosAdmin[indice].stock = Number(stock);
             productosAdmin[indice].stockMinimo = Number(stockmin);
             productosAdmin[indice].imagen = imagenFinal;
+            productosAdmin[indice].descripcion = descripcionFinal;
         }
     }
 
-    localStorage.setItem(
-        "inventarioFerreteria",
-        JSON.stringify(productosAdmin),
-    );
+    localStorage.setItem("inventarioFerreteria", JSON.stringify(productosAdmin));
     ocultarFormularioProducto();
     cargarProductos();
 }
@@ -225,30 +237,23 @@ function guardarProducto() {
 function editarProducto(id) {
     let indice = productosAdmin.findIndex((p) => p.id === id);
     if (indice !== -1) {
-        document.getElementById("producto-id").value =
-            productosAdmin[indice].id;
-        document.getElementById("producto-codigo").value =
-            productosAdmin[indice].codigo || "";
-        document.getElementById("producto-nombre").value =
-            productosAdmin[indice].nombre || "";
-        document.getElementById("producto-marca").value =
-            productosAdmin[indice].marca || "";
-        document.getElementById("producto-categoria").value =
-            productosAdmin[indice].categoria || "";
-        document.getElementById("producto-subcategoria").value =
-            productosAdmin[indice].subcategoria || "";
-        document.getElementById("producto-unidad").value =
-            productosAdmin[indice].unidad || "Unidad";
-        document.getElementById("producto-pcompra").value =
-            productosAdmin[indice].precioCompra || 0;
-        document.getElementById("producto-precio").value =
-            productosAdmin[indice].precio || 0;
-        document.getElementById("producto-stock").value =
-            productosAdmin[indice].stock || 0;
-        document.getElementById("producto-stockmin").value =
-            productosAdmin[indice].stockMinimo || 0;
-        document.getElementById("producto-imagen").value =
-            productosAdmin[indice].imagen || "";
+        document.getElementById("producto-id").value = productosAdmin[indice].id;
+        document.getElementById("producto-codigo").value = productosAdmin[indice].codigo || "";
+        document.getElementById("producto-nombre").value = productosAdmin[indice].nombre || "";
+        document.getElementById("producto-marca").value = productosAdmin[indice].marca || "";
+        document.getElementById("producto-categoria").value = productosAdmin[indice].categoria || "";
+        document.getElementById("producto-subcategoria").value = productosAdmin[indice].subcategoria || "";
+        document.getElementById("producto-unidad").value = productosAdmin[indice].unidad || "Unidad";
+        document.getElementById("producto-pcompra").value = productosAdmin[indice].precioCompra || 0;
+        document.getElementById("producto-precio").value = productosAdmin[indice].precio || 0;
+        document.getElementById("producto-stock").value = productosAdmin[indice].stock || 0;
+        document.getElementById("producto-stockmin").value = productosAdmin[indice].stockMinimo || 0;
+        document.getElementById("producto-imagen").value = productosAdmin[indice].imagen || "";
+        
+        let descInput = document.getElementById("producto-descripcion");
+        if (descInput) {
+            descInput.value = productosAdmin[indice].descripcion || "";
+        }
 
         document.getElementById("formulario-productos").style.display = "block";
     }
@@ -256,19 +261,23 @@ function editarProducto(id) {
 
 function eliminarProducto(id) {
     productosAdmin = productosAdmin.filter((p) => p.id !== id);
-    localStorage.setItem(
-        "inventarioFerreteria",
-        JSON.stringify(productosAdmin),
-    );
+    localStorage.setItem("inventarioFerreteria", JSON.stringify(productosAdmin));
     cargarProductos();
 }
 
+// ==========================================
+// 3. FUNCIONES DE COLABORADORES / USUARIOS
+// ==========================================
+
 function cargarColaboradores() {
     let cuerpoTabla = document.getElementById("tabla-colaboradores-cuerpo");
+    if (!cuerpoTabla) return;
     cuerpoTabla.innerHTML = "";
 
-    for (let i = 0; i < colaboradoresAdmin.length; i++) {
-        let colab = colaboradoresAdmin[i];
+    let listaUsuarios = obtenerUsuariosNormalizados();
+
+    for (let i = 0; i < listaUsuarios.length; i++) {
+        let colab = listaUsuarios[i];
         let claseRol =
             colab.rol === "admin"
                 ? "badge bg-primary"
@@ -278,24 +287,25 @@ function cargarColaboradores() {
 
         cuerpoTabla.innerHTML += `
             <tr>
-                <td class="fw-bold">${colab.rut || "N/A"}</td>
-                <td class="fw-bold">${colab.nombre || "Sin Nombre"}</td>
+                <td class="fw-bold">${colab.rut}</td>
+                <td class="fw-bold">${colab.nombre}</td>
                 <td>${colab.correo}</td>
                 <td><span class="${claseRol}">${colab.rol}</span></td>
-                <td>${colab.comuna || "N/A"}</td>
+                <td>${colab.comuna}</td>
                 <td class="text-center">
-                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editarColaborador('${colab.rut}')"><i class="bi bi-pencil"></i></button>
-                    <button class="btn btn-sm btn-outline-danger" onclick="eliminarColaborador('${colab.rut}')"><i class="bi bi-trash"></i></button>
+                    <button class="btn btn-sm btn-outline-primary me-1" onclick="editarColaborador('${colab.idUnico}')"><i class="bi bi-pencil"></i></button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="eliminarColaborador('${colab.idUnico}')"><i class="bi bi-trash"></i></button>
                 </td>
             </tr>
         `;
     }
-    document.getElementById("metrica-total-colaboradores").textContent =
-        colaboradoresAdmin.length;
+    let elTotalColab = document.getElementById("metrica-total-colaboradores");
+    if (elTotalColab) elTotalColab.textContent = listaUsuarios.length;
 }
 
 function iniciarSelectRegiones() {
     let selectRegion = document.getElementById("colab-region");
+    if (!selectRegion) return;
     selectRegion.innerHTML = '<option value="">Seleccione Región...</option>';
     if (typeof regiones !== "undefined") {
         regiones.forEach((region, indice) => {
@@ -307,6 +317,7 @@ function iniciarSelectRegiones() {
 function cargarComunasMenu() {
     let regionSeleccionada = document.getElementById("colab-region").value;
     let selectComuna = document.getElementById("colab-comuna");
+    if (!selectComuna) return;
     selectComuna.innerHTML = '<option value="">Seleccione Comuna...</option>';
 
     if (regionSeleccionada !== "" && typeof regiones !== "undefined") {
@@ -323,14 +334,11 @@ function esRutValido(rutOriginal) {
     const run = rutOriginal.trim().toUpperCase();
     if (run === "") return false;
     
-    // Prohibir puntos y guiones
     if (run.includes(".") || run.includes("-")) return false;
     
-    // Formato básico: varios números y una letra/número final
     const formatoRun = /^\d+[0-9K]$/;
     if (!formatoRun.test(run)) return false;
 
-    // APLICACIÓN DEL MÓDULO 11
     const cuerpo = run.slice(0, -1);
     const digitoIngresado = run.slice(-1);
     let suma = 0;
@@ -380,11 +388,11 @@ function ocultarFormularioColaborador() {
 
 function guardarColaborador() {
     let rutOriginal = document.getElementById("colab-rut-original").value;
-    let rut = document.getElementById("colab-rut").value;
-    let nombre = document.getElementById("colab-nombre").value;
-    let correo = document.getElementById("colab-correo").value.toLowerCase();
+    let rut = document.getElementById("colab-rut").value.trim();
+    let nombre = document.getElementById("colab-nombre").value.trim();
+    let correo = document.getElementById("colab-correo").value.trim().toLowerCase();
     let rol = document.getElementById("colab-rol").value;
-    let direccion = document.getElementById("colab-direccion").value;
+    let direccion = document.getElementById("colab-direccion").value.trim();
 
     let indiceRegion = document.getElementById("colab-region").value;
     let regionTexto = "";
@@ -393,56 +401,53 @@ function guardarColaborador() {
     }
     let comuna = document.getElementById("colab-comuna").value;
 
-    // VALIDACIÓN DE CAMPOS VACÍOS
     if (rut === "" || nombre === "" || correo === "") {
         alert("Rut, nombre y correo son obligatorios.");
         return;
     }
 
-    // VALIDACIÓN ESTRICTA DEL CORREO (Formato @ y .)
     const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formatoCorreo.test(correo)) {
         alert("Ingrese un correo electrónico válido (ejemplo: usuario@empresa.cl).");
         return;
     }
 
-    // VALIDACIÓN ESTRICTA DEL RUT
     if (!esRutValido(rut)) {
         alert("El RUT ingresado no es válido. Ingréselo sin puntos ni guión.");
         return;
     }
 
-    let rutDuplicado = colaboradoresAdmin.some(
-        (c) => c.rut === rut && c.rut !== rutOriginal,
+    let rawUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    let rutDuplicado = rawUsuarios.some(
+        (c) => (c.rut === rut || c.run === rut) && (c.rut !== rutOriginal && c.run !== rutOriginal)
     );
     if (rutDuplicado) {
         alert("Este RUT ya se encuentra registrado en el sistema.");
         return;
     }
 
-    let correoDuplicado = colaboradoresAdmin.some(
-        (c) => c.correo === correo && c.rut !== rutOriginal,
+    let correoDuplicado = rawUsuarios.some(
+        (c) => c.correo === correo && (c.rut !== rutOriginal && c.run !== rutOriginal)
     );
     if (correoDuplicado) {
         alert("Este correo electrónico ya está en uso por otro usuario.");
         return;
     }
 
-    let sesionActual = JSON.parse(
-        localStorage.getItem("sesionUsuario") || "{}",
-    );
+    let sesionActual = JSON.parse(localStorage.getItem("sesionUsuario") || "{}");
 
     if (rutOriginal !== "") {
-        let usuarioPrevio = colaboradoresAdmin.find(
-            (c) => c.rut === rutOriginal,
+        let usuarioPrevio = rawUsuarios.find(
+            (c) => (c.rut === rutOriginal || c.run === rutOriginal)
         );
         if (
             usuarioPrevio &&
             usuarioPrevio.correo === sesionActual.correo &&
             rol !== "admin"
         ) {
-            let adminsRestantes = colaboradoresAdmin.filter(
-                (c) => c.rol === "admin" && c.rut !== rutOriginal,
+            let adminsRestantes = rawUsuarios.filter(
+                (c) => c.rol === "admin" && (c.rut !== rutOriginal && c.run !== rutOriginal)
             );
             if (adminsRestantes.length === 0) {
                 alert(
@@ -454,7 +459,7 @@ function guardarColaborador() {
     }
 
     if (rutOriginal === "") {
-        colaboradoresAdmin.push({
+        rawUsuarios.push({
             rut: rut,
             nombre: nombre,
             correo: correo,
@@ -465,43 +470,56 @@ function guardarColaborador() {
             contrasena: "1234",
         });
     } else {
-        let indice = colaboradoresAdmin.findIndex((c) => c.rut === rutOriginal);
+        let indice = rawUsuarios.findIndex(
+            (c) => (c.rut === rutOriginal || c.run === rutOriginal)
+        );
         if (indice !== -1) {
-            colaboradoresAdmin[indice].rut = rut;
-            colaboradoresAdmin[indice].nombre = nombre;
-            colaboradoresAdmin[indice].correo = correo;
-            colaboradoresAdmin[indice].rol = rol;
-            colaboradoresAdmin[indice].region = regionTexto;
-            colaboradoresAdmin[indice].comuna = comuna;
-            colaboradoresAdmin[indice].direccion = direccion;
+            if (rawUsuarios[indice].run !== undefined) {
+                rawUsuarios[indice].run = rut;
+            } else {
+                rawUsuarios[indice].rut = rut;
+            }
+            rawUsuarios[indice].nombre = nombre;
+            rawUsuarios[indice].correo = correo;
+            rawUsuarios[indice].rol = rol;
+            rawUsuarios[indice].region = regionTexto;
+            rawUsuarios[indice].comuna = comuna;
+            rawUsuarios[indice].direccion = direccion;
         }
     }
 
-    localStorage.setItem("usuarios", JSON.stringify(colaboradoresAdmin));
+    localStorage.setItem("usuarios", JSON.stringify(rawUsuarios));
     ocultarFormularioColaborador();
     cargarColaboradores();
 }
 
-function editarColaborador(rut) {
-    let indice = colaboradoresAdmin.findIndex((c) => c.rut === rut);
+function editarColaborador(idUnico) {
+    let rawUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    let indice = rawUsuarios.findIndex(
+        (c) => (c.rut === idUnico || c.run === idUnico || (c.rut || c.run) === idUnico)
+    );
+    
+    if (indice === -1) {
+        indice = rawUsuarios.findIndex((c, idx) => `USER-${idx}` === idUnico);
+    }
+
     if (indice !== -1) {
-        document.getElementById("colab-rut-original").value =
-            colaboradoresAdmin[indice].rut || "";
+        let usuario = rawUsuarios[indice];
+        let valorRut = usuario.rut || usuario.run || "";
+
+        document.getElementById("colab-rut-original").value = valorRut;
 
         let inputRut = document.getElementById("colab-rut");
-        inputRut.value = colaboradoresAdmin[indice].rut || "";
+        inputRut.value = valorRut;
         inputRut.readOnly = true;
 
-        document.getElementById("colab-nombre").value =
-            colaboradoresAdmin[indice].nombre || "";
-        document.getElementById("colab-correo").value =
-            colaboradoresAdmin[indice].correo || "";
-        document.getElementById("colab-rol").value =
-            colaboradoresAdmin[indice].rol || "cliente";
+        document.getElementById("colab-nombre").value = usuario.nombre || "";
+        document.getElementById("colab-correo").value = usuario.correo || "";
+        document.getElementById("colab-rol").value = usuario.rol || "cliente";
 
         if (typeof regiones !== "undefined") {
             let indexRegion = regiones.findIndex(
-                (r) => r.nombre === colaboradoresAdmin[indice].region,
+                (r) => r.nombre === usuario.region,
             );
             if (indexRegion !== -1) {
                 document.getElementById("colab-region").value = indexRegion;
@@ -510,46 +528,50 @@ function editarColaborador(rut) {
                 document.getElementById("colab-region").value = "";
             }
         }
-        document.getElementById("colab-comuna").value =
-            colaboradoresAdmin[indice].comuna || "";
-        document.getElementById("colab-direccion").value =
-            colaboradoresAdmin[indice].direccion || "";
+        document.getElementById("colab-comuna").value = usuario.comuna || "";
+        document.getElementById("colab-direccion").value = usuario.direccion || "";
 
-        document.getElementById("formulario-colaboradores").style.display =
-            "block";
+        document.getElementById("formulario-colaboradores").style.display = "block";
     }
 }
 
-function eliminarColaborador(rut) {
-    let sesionActual = JSON.parse(
-        localStorage.getItem("sesionUsuario") || "{}",
+function eliminarColaborador(idUnico) {
+    let rawUsuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+    let sesionActual = JSON.parse(localStorage.getItem("sesionUsuario") || "{}");
+    
+    let indice = rawUsuarios.findIndex(
+        (c) => (c.rut === idUnico || c.run === idUnico || (c.rut || c.run) === idUnico)
     );
-    let colabAEliminar = colaboradoresAdmin.find((c) => c.rut === rut);
-
-    if (colabAEliminar && colabAEliminar.correo === sesionActual.correo) {
-        alert(
-            "No puedes eliminar tu propia cuenta mientras tienes la sesión iniciada.",
-        );
-        return;
+    if (indice === -1) {
+        indice = rawUsuarios.findIndex((c, idx) => `USER-${idx}` === idUnico);
     }
 
-    if (colabAEliminar && colabAEliminar.rol === "admin") {
-        let adminsRestantes = colaboradoresAdmin.filter(
-            (c) => c.rol === "admin" && c.rut !== rut,
-        );
-        if (adminsRestantes.length === 0) {
-            alert(
-                "Operación denegada. No puedes eliminar al único Administrador del sistema.",
-            );
+    if (indice !== -1) {
+        let colabAEliminar = rawUsuarios[indice];
+        let valRut = colabAEliminar.rut || colabAEliminar.run;
+
+        if (colabAEliminar && colabAEliminar.correo === sesionActual.correo) {
+            alert("No puedes eliminar tu propia cuenta mientras tienes la sesión iniciada.");
             return;
         }
-    }
 
-    colaboradoresAdmin = colaboradoresAdmin.filter((c) => c.rut !== rut);
-    localStorage.setItem("usuarios", JSON.stringify(colaboradoresAdmin));
-    cargarColaboradores();
+        if (colabAEliminar && colabAEliminar.rol === "admin") {
+            let adminsRestantes = rawUsuarios.filter(
+                (c) => c.rol === "admin" && (c.rut !== valRut && c.run !== valRut)
+            );
+            if (adminsRestantes.length === 0) {
+                alert("Operación denegada. No puedes eliminar al único Administrador del sistema.");
+                return;
+            }
+        }
+
+        rawUsuarios.splice(indice, 1);
+        localStorage.setItem("usuarios", JSON.stringify(rawUsuarios));
+        cargarColaboradores();
+    }
 }
-//Funciones inicializadoras
+
+// Funciones inicializadoras
 iniciarSelectRegiones();
 cargarProductos();
 cargarColaboradores();
