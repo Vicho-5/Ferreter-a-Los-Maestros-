@@ -60,7 +60,6 @@
                     <span class="badge bg-brand-green px-3 py-2">Estado: Operativo</span>
                 </div>
 
-                <!-- Tarjetas igualadas con flex-column -->
                 <div class="row g-3 mb-5" id="dashboard">
                     <div class="col-12 col-sm-6 col-xl-3">
                         <div class="card p-3 shadow-sm tarjeta-metrica h-100 d-flex flex-column justify-content-center">
@@ -157,7 +156,8 @@
                         <input type="hidden" id="colab-rut-original">
                         
                         <div class="row g-2 align-items-center mb-2">
-                            <div class="col-md-3"><input type="text" id="colab-rut" class="form-control" placeholder="RUT (Ej: 11222333K)"></div>
+                            <!-- AQUÍ APLICAMOS LOS LÍMITES -->
+                            <div class="col-md-3"><input type="text" id="colab-rut" class="form-control" placeholder="RUT (Ej: 11222333K)" maxlength="9"></div>
                             <div class="col-md-4"><input type="text" id="colab-nombre" class="form-control" placeholder="Nombre (Máx 50)" maxlength="50"></div>
                             <div class="col-md-3"><input type="email" id="colab-correo" class="form-control" placeholder="Correo electrónico" maxlength="100"></div>
                             <div class="col-md-2">
