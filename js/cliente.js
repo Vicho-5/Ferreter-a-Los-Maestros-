@@ -181,15 +181,21 @@ function cargarDestacados() {
     const destacados = productos.slice(0, 4);
 
     for (let i = 0; i < destacados.length; i++) {
+        let productoAgotado = destacados[i].stock <= 0;
+        let claseAgotado = productoAgotado ? "opacity-50" : "";
+        let botonAccion = productoAgotado
+            ? `<button class="btn btn-secondary w-100 mt-2" disabled>Agotado</button>`
+            : `<button class="btn btn-orange w-100 mt-2" onclick="verDetalle(${destacados[i].id})">Ver detalle</button>`;
+
         contenedor.innerHTML += `
             <div class="col-md-3">
-                <div class="card h-100 shadow-sm border-0 product-card">
+                <div class="card h-100 shadow-sm border-0 product-card ${claseAgotado}">
                     <img src="${destacados[i].imagen}" class="card-img-top img-product-destacados" alt="${destacados[i].nombre}">
                     <div class="card-body">
                         <h5 class="card-title fw-bold">${destacados[i].nombre}</h5>
                         <p class="card-text text-muted">${destacados[i].marca}</p>
                         <h4 class="fw-bold text-brand-orange">$${destacados[i].precio.toLocaleString("es-CL")}</h4>
-                        <button class="btn btn-orange w-100 mt-2" onclick="verDetalle(${destacados[i].id})">Ver detalle</button>
+                        ${botonAccion}
                     </div>
                 </div>
             </div>
@@ -230,15 +236,21 @@ function cargarCatalogo() {
 
     // Recorremos los 10 productos
     for (let i = 0; i < productos.length; i++) {
+        let productoAgotado = productos[i].stock <= 0;
+        let claseAgotado = productoAgotado ? "opacity-50" : "";
+        let botonAccion = productoAgotado
+            ? `<button class="btn btn-secondary w-100 mt-auto" disabled>Agotado</button>`
+            : `<button class="btn btn-orange w-100 mt-auto" onclick="verDetalle(${productos[i].id})">Ver detalle</button>`;
+
         contenedor.innerHTML += `
             <div class="col-md-3">
-                <div class="card h-100 shadow-sm border-0 product-card">
+                <div class="card h-100 shadow-sm border-0 product-card ${claseAgotado}">
                     <img src="${productos[i].imagen}" class="card-img-top img-product-destacados" alt="${productos[i].nombre}">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title fw-bold">${productos[i].nombre}</h5>
                         <p class="card-text text-muted mb-2">${productos[i].marca}</p>
                         <h4 class="fw-bold text-brand-orange mt-auto mb-3">$${productos[i].precio.toLocaleString("es-CL")}</h4>
-                        <button class="btn btn-orange w-100" onclick="verDetalle(${productos[i].id})">Ver detalle</button>
+                        ${botonAccion}
                     </div>
                 </div>
             </div>
@@ -276,6 +288,18 @@ function cargarDetalle() {
         "$" + producto.precio.toLocaleString("es-CL");
     document.getElementById("detalle-descripcion").textContent =
         producto.descripcion;
+
+    // Validar stock para el botón de agregar POR SI SE METE A ESTA PAG DESDE EL HISTORIAL
+    const botonAgregar =
+        document.querySelector("#detalle-precio").nextElementSibling
+            .nextElementSibling.nextElementSibling;
+
+    if (producto.stock <= 0) {
+        botonAgregar.disabled = true;
+        botonAgregar.textContent = "Producto Agotado";
+        botonAgregar.classList.remove("btn-brand-dark");
+        botonAgregar.classList.add("btn-secondary");
+    }
 }
 
 // Llamamos a la función al final del archivo
@@ -412,3 +436,208 @@ function vaciarCarrito() {
 
 // Ejecutar la renderización al cargar cualquier página
 renderizarCarrito();
+
+// ==========================================
+// MANEJO DE SESIÓN EN VISTAS PÚBLICAS lo que pidio la emi
+// ==========================================
+
+function gestionarEstadoSesion() {
+    // Buscar la sesión en local o session storage
+    const sesionGuardada =
+        localStorage.getItem("sesionUsuario") ||
+        sessionStorage.getItem("sesionUsuario");
+    const menuSesion = document.getElementById("menu-sesion");
+
+    // Si no existe el contenedor en el HTML, detenemos la función
+    if (!menuSesion) return;
+
+    if (sesionGuardada) {
+        const usuario = JSON.parse(sesionGuardada);
+        // Usamos la primera parte del correo como nombre visible
+        const nombreMostrar = usuario.correo.split("@")[0];
+
+        // Cambiamos el botón por un dropdown de Bootstrap
+        menuSesion.innerHTML = `
+            <div class="dropdown">
+                <button class="btn btn-outline-light dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    👤 ${nombreMostrar}
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    ${usuario.rol === "admin" ? '<li><a class="dropdown-item" href="admin.html">⚙️ Panel Admin</a></li>' : ""}
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger fw-bold" href="#" onclick="cerrarSesion(event)">🚪 Cerrar Sesión</a></li>
+                </ul>
+            </div>
+        `;
+    }
+}
+
+function cerrarSesion(evento) {
+    if (evento) evento.preventDefault();
+
+    // Eliminar la sesión de ambas memorias por seguridad
+    localStorage.removeItem("sesionUsuario");
+    sessionStorage.removeItem("sesionUsuario");
+
+    // Redirigir al inicio para refrescar la vista
+    window.location.href = "index.html";
+}
+
+// Ejecutar la validación al cargar cualquier página
+gestionarEstadoSesion();
+
+// ==========================================
+// LÓGICA DE LA PÁGINA DE CHECKOUT (Invitado vs Cliente)
+// ==========================================
+
+function inicializarCheckout() {
+    const formCheckout = document.getElementById("form-checkout");
+    if (!formCheckout) return; // Se detiene si no estamos en checkout.html
+
+    let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+    if (carrito.length === 0) {
+        alert("Tu carrito está vacío. Serás redirigido al catálogo.");
+        window.location.href = "catalogo.html";
+        return;
+    }
+
+    // 1. Pintar el resumen de la compra
+    const listaCheckout = document.getElementById("checkout-lista");
+    const totalCheckout = document.getElementById("checkout-total");
+    const badgeCheckout = document.getElementById("checkout-badge");
+
+    let total = 0;
+    let cantidadItems = 0;
+
+    carrito.forEach((item) => {
+        let subtotal = item.precio * item.cantidad;
+        total += subtotal;
+        cantidadItems += item.cantidad;
+
+        listaCheckout.innerHTML += `
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <div>
+                    <h6 class="my-0 fw-bold">${item.nombre}</h6>
+                    <small class="text-muted">Cantidad: ${item.cantidad}</small>
+                </div>
+                <span class="text-muted fw-bold">$${subtotal.toLocaleString("es-CL")}</span>
+            </li>
+        `;
+    });
+
+    totalCheckout.textContent = "$" + total.toLocaleString("es-CL");
+    if (badgeCheckout) badgeCheckout.textContent = cantidadItems;
+
+    // 2. Configurar selectores dinámicos de Región y Comuna
+    const selectRegion = document.getElementById("checkout-region");
+    const selectComuna = document.getElementById("checkout-comuna");
+
+    // Llenar el select de regiones leyendo la variable global 'regiones' (de utils.js)
+    if (typeof regiones !== "undefined" && selectRegion) {
+        regiones.forEach((region, indice) => {
+            const opcion = document.createElement("option");
+            opcion.value = indice;
+            opcion.textContent = region.nombre;
+            selectRegion.appendChild(opcion);
+        });
+
+        // Evento para cargar comunas cuando se cambia la región
+        selectRegion.addEventListener("change", function () {
+            const indiceRegion = Number(selectRegion.value);
+            const regionSeleccionada = regiones[indiceRegion];
+
+            selectComuna.innerHTML =
+                '<option value="" selected disabled>Selecciona una comuna</option>';
+
+            regionSeleccionada.comunas.forEach((comuna) => {
+                const opcion = document.createElement("option");
+                opcion.value = comuna;
+                opcion.textContent = comuna;
+                selectComuna.appendChild(opcion);
+            });
+
+            selectComuna.disabled = false;
+        });
+    }
+
+    // 3. Lógica de autocompletado: ¿Invitado o Cliente?
+    const sesionGuardada =
+        localStorage.getItem("sesionUsuario") ||
+        sessionStorage.getItem("sesionUsuario");
+
+    if (sesionGuardada) {
+        const sesion = JSON.parse(sesionGuardada);
+        // Buscar todos los datos del usuario en la base de datos de registro
+        const usuariosRegistrados =
+            JSON.parse(localStorage.getItem("usuarios")) || [];
+        const usuarioCompleto = usuariosRegistrados.find(
+            (u) => u.correo === sesion.correo,
+        );
+
+        if (usuarioCompleto) {
+            // Autocompletar el formulario de texto
+            document.getElementById("checkout-nombre").value =
+                usuarioCompleto.nombre || "";
+            document.getElementById("checkout-apellidos").value =
+                usuarioCompleto.apellidos || "";
+            document.getElementById("checkout-correo").value =
+                usuarioCompleto.correo || "";
+            document.getElementById("checkout-direccion").value =
+                usuarioCompleto.direccion || "";
+            document.getElementById("checkout-correo").readOnly = true;
+
+            // Autocompletar los selectores de Región y Comuna
+            if (typeof regiones !== "undefined" && selectRegion) {
+                const indexRegionGuardada = regiones.findIndex(
+                    (r) => r.nombre === usuarioCompleto.region,
+                );
+                if (indexRegionGuardada !== -1) {
+                    selectRegion.value = indexRegionGuardada;
+                    // Disparar el evento 'change' manualmente para que se carguen las comunas de esa región
+                    selectRegion.dispatchEvent(new Event("change"));
+                    // Seleccionar la comuna guardada
+                    selectComuna.value = usuarioCompleto.comuna || "";
+                }
+            }
+        }
+    }
+
+    // 4. Procesar el pago
+    formCheckout.addEventListener("submit", function (evento) {
+        evento.preventDefault(); // Evita que la página se recargue
+
+        const nombreComprador =
+            document.getElementById("checkout-nombre").value;
+        let inventario =
+            JSON.parse(localStorage.getItem("inventarioFerreteria")) || [];
+
+        // Descontar el stock en el inventario general
+        carrito.forEach((itemComprado) => {
+            let indexCatalogo = inventario.findIndex(
+                (prod) => prod.id === itemComprado.id,
+            );
+            if (indexCatalogo !== -1) {
+                inventario[indexCatalogo].stock -= itemComprado.cantidad;
+                if (inventario[indexCatalogo].stock < 0)
+                    inventario[indexCatalogo].stock = 0;
+            }
+        });
+
+        // Guardar el nuevo stock y vaciar el carrito
+        localStorage.setItem(
+            "inventarioFerreteria",
+            JSON.stringify(inventario),
+        );
+        localStorage.removeItem("carrito");
+
+        // Mensaje de éxito y redirección
+        alert(
+            `¡Pago procesado con éxito!\n\nMuchas gracias por tu compra, ${nombreComprador}.\nHemos enviado el comprobante a tu correo.`,
+        );
+        window.location.href = "index.html";
+    });
+}
+
+// Ejecutar la función
+inicializarCheckout();

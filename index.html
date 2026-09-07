@@ -6,11 +6,7 @@
         <title>Ferretería Los Maestros</title>
 
         <!-- Favicon -->
-        <link
-            rel="icon"
-            href="/Ferreter-a-Los-Maestros-/img/favicon-ferreteria.png"
-            type="image/png"
-        />
+        <link rel="icon" href="img/favicon-ferreteria.png" type="image/png" />
 
         <!-- Google Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -98,7 +94,7 @@
                                     >
                                 </a>
                             </li>
-                            <li class="nav-item ms-lg-3">
+                            <li class="nav-item ms-lg-3" id="menu-sesion">
                                 <a class="btn btn-orange" href="login.html"
                                     >Iniciar Sesión</a
                                 >
@@ -246,10 +242,18 @@
                                 Ferretería Los Maestros
                             </h2>
                             <p class="text-muted">
-                                Desde 1987, somos el proveedor de confianza de
-                                constructoras, contratistas y maestros de obra
-                                en la región. Ofrecemos un catálogo completo con
-                                precios competitivos y atención personalizada.
+                                Somos un negocio familiar ubicado en La Serena,
+                                Región de Coquimbo, con 22 años de trayectoria.
+                                Atendidos directamente por sus dueños, nos
+                                dedicamos a proveer materiales de construcción,
+                                herramientas eléctricas y manuales, gasfitería y
+                                electricidad.
+                            </p>
+                            <p class="text-muted">
+                                Ya sea que busques soluciones para tu hogar o
+                                seas un contratista que necesita abastecimiento
+                                constante, ofrecemos atención personalizada y un
+                                amplio catálogo.
                             </p>
                             <div class="mt-5 p-3 rounded bg-brand-muted">
                                 <h5 class="fw-bold">Equipo Desarrollador</h5>
@@ -284,7 +288,7 @@
                             class="card shadow-sm border-0 flex-md-row h-100 news-card"
                         >
                             <img
-                                src="/Ferreter-a-Los-Maestros-/img/taladro-consejos-1.jpg"
+                                src="img/taladro-consejos-1.jpg"
                                 class="card-img-left img-news img-border-radius"
                                 alt="Noticia 1"
                             />
@@ -311,7 +315,7 @@
                             class="card shadow-sm border-0 flex-md-row h-100 news-card"
                         >
                             <img
-                                src="/Ferreter-a-Los-Maestros-/img/taladro-consejos-2.jpg"
+                                src="img/taladro-consejos-2.jpg"
                                 class="card-img-left img-news img-border-radius"
                                 alt="Noticia 2"
                             />
@@ -453,6 +457,12 @@
                         onclick="vaciarCarrito()"
                     >
                         Vaciar Lista
+                    </button>
+                    <button
+                        class="btn btn-success w-100 fw-bold mt-2"
+                        onclick="window.location.href = 'checkout.html'"
+                    >
+                        Pagar
                     </button>
                 </div>
             </div>
