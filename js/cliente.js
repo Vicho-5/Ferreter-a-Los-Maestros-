@@ -641,3 +641,51 @@ function inicializarCheckout() {
 
 // Ejecutar la función
 inicializarCheckout();
+
+// ==========================================
+// LÓGICA DEL FORMULARIO DE CONTACTO
+// ==========================================
+
+function inicializarContacto() {
+    const formContacto = document.getElementById("form-contacto");
+    if (!formContacto) return; // Se detiene si no encuentra el formulario en la página
+
+    formContacto.addEventListener("submit", function (evento) {
+        // Evitamos que la página se recargue
+        evento.preventDefault();
+
+        // Validaciones requeridas por la rúbrica
+        const nombreInput = document.getElementById("nombre").value.trim();
+        const correoInput = document.getElementById("correo").value.trim();
+        const mensajeInput = document.getElementById("mensaje").value.trim();
+        const formatoCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (nombreInput.length > 100) {
+            alert("El nombre no puede superar los 100 caracteres.");
+            return;
+        }
+
+        if (correoInput.length > 100 || !formatoCorreo.test(correoInput)) {
+            alert(
+                "Ingresa un correo electrónico válido (máximo 100 caracteres).",
+            );
+            return;
+        }
+
+        if (mensajeInput.length > 500) {
+            alert("El comentario no puede superar los 500 caracteres.");
+            return;
+        }
+
+        // Si pasa las validaciones
+        alert(
+            "¡Mensaje enviado con éxito!\nNos pondremos en contacto contigo a la brevedad.",
+        );
+
+        // Limpiamos los campos
+        formContacto.reset();
+    });
+}
+
+// Ejecutar la función
+inicializarContacto();
