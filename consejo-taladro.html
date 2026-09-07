@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+
+        <title>
+            Cómo elegir el taladro correcto | Ferretería Los Maestros
+        </title>
+
+        <!-- Favicon -->
+        <link
+            rel="icon"
+            href="img/favicon-ferreteria.png"
+            type="image/png"
+        />
+
+        <!-- Google Fonts -->
+        <link
+            rel="preconnect"
+            href="https://fonts.googleapis.com"
+        />
+
+        <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossorigin
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Bootstrap 5 CSS -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- Bootstrap Icons -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        />
+
+        <!-- Estilos del proyecto -->
+        <link
+            rel="stylesheet"
+            href="css/global.css"
+        />
+
+        <link
+            rel="stylesheet"
+            href="css/cliente.css"
+        />
+
+        <!-- JavaScript de las vistas públicas -->
+        <script
+            src="js/cliente.js"
+            defer
+        ></script>
+    </head>
+
+    <body class="bg-light font-inter d-flex flex-column min-vh-100">
+
+        <!-- ENCABEZADO Y MENÚ DE NAVEGACIÓN -->
+        <header>
+
+            <nav
+                class="navbar navbar-expand-lg navbar-dark bg-brand-dark"
+            >
+
+                <div class="container">
+
+                    <!-- Logo y nombre -->
+                    <a
+                        class="navbar-brand fw-bold"
+                        href="index.html"
+                    >
+                        <span class="logo-box">
+                            FM
+                        </span>
+
+                        Ferretería Los Maestros
+                    </a>
+
+
+                    <!-- Botón del menú responsive -->
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Abrir menú de navegación"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+
+                    <!-- Enlaces de navegación -->
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarNav"
+                    >
+
+                        <ul class="navbar-nav ms-auto">
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-white"
+                                    href="index.html#inicio"
+                                >
+                                    Inicio
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-white"
+                                    href="index.html#destacados"
+                                >
+                                    Productos
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-white"
+                                    href="index.html#nosotros"
+                                >
+                                    Nosotros
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-white fw-bold"
+                                    href="index.html#novedades"
+                                >
+                                    Novedades
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link text-white"
+                                    href="index.html#contacto"
+                                >
+                                    Contacto
+                                </a>
+                            </li>
+
+
+                            <!-- Carrito -->
+                            <li class="nav-item ms-lg-3">
+
+                                <a
+                                    class="nav-link text-brand-white fw-bold d-flex align-items-center"
+                                    data-bs-toggle="offcanvas"
+                                    href="#carritoOffcanvas"
+                                    role="button"
+                                    aria-controls="carritoOffcanvas"
+                                >
+                                    🛒 Mi Carrito
+
+                                    <span
+                                        id="contador-carrito"
+                                        class="badge bg-danger rounded-pill ms-2"
+                                    >
+                                        0
+                                    </span>
+                                </a>
+
+                            </li>
+
+
+                            <!-- Sesión -->
+                            <li
+                                class="nav-item ms-lg-3"
+                                id="menu-sesion"
+                            >
+                                <a
+                                    class="btn btn-orange"
+                                    href="login.html"
+                                >
+                                    Iniciar Sesión
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </header>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="container py-5 my-3 flex-grow-1">
+
+            <div class="row justify-content-center">
+
+                <article
+                    class="col-lg-8 bg-white p-4 p-md-5 rounded shadow-sm"
+                >
+
+                    <!-- VOLVER A NOVEDADES -->
+                    <div class="mb-4">
+
+                        <a
+                            href="index.html#novedades"
+                            class="text-decoration-none text-brand-orange fw-bold"
+                        >
+                            &larr; Volver a Novedades
+                        </a>
+
+                    </div>
+
+
+                    <!-- TÍTULO DEL CONSEJO -->
+                    <h1
+                        class="fw-bold text-brand-dark mb-3"
+                    >
+                        Cómo elegir el taladro correcto
+                    </h1>
+
+
+                    <!-- DESCRIPCIÓN -->
+                    <p class="lead text-secondary mb-4">
+
+                        Descubre las diferencias entre un taladro
+                        atornillador, un taladro percutor y un
+                        rotomartillo para escoger la herramienta
+                        adecuada para tu próxima obra.
+
+                    </p>
+
+
+                    <!-- IMAGEN PRINCIPAL -->
+                    <img
+                        src="img/taladro-consejos-1.jpg"
+                        alt="Taladro junto a diferentes herramientas de trabajo"
+                        class="img-fluid rounded shadow-sm mb-5 w-100"
+                        style="max-height: 400px; object-fit: cover"
+                    />
+
+
+                    <!-- CONTENIDO DEL CONSEJO -->
+                    <div
+                        class="text-secondary"
+                        style="line-height: 1.8; font-size: 1.05rem"
+                    >
+
+                        <!-- INTRODUCCIÓN -->
+                        <p>
+
+                            Elegir el taladro adecuado depende principalmente
+                            del material que deseas perforar y del tipo de
+                            trabajo que necesitas realizar. Aunque estas
+                            herramientas pueden parecer similares, cada una
+                            está diseñada para cumplir funciones diferentes.
+
+                        </p>
+
+                        <p>
+
+                            Conocer sus principales características permite
+                            trabajar de manera más cómoda y utilizar la
+                            herramienta más apropiada para cada proyecto.
+
+                        </p>
+
+
+                        <!-- TIPOS DE TALADRO -->
+                        <h4
+                            class="fw-bold text-brand-dark mt-5 mb-3"
+                        >
+                            ¿Qué tipo de taladro necesitas?
+                        </h4>
+
+
+                        <ul
+                            class="list-group list-group-flush mb-4"
+                        >
+
+                            <!-- Taladro atornillador -->
+                            <li
+                                class="list-group-item border-0 ps-0"
+                            >
+
+                                <i
+                                    class="bi bi-tools text-brand-orange me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <strong>
+                                    Taladro atornillador:
+                                </strong>
+
+                                Es una alternativa práctica para montar
+                                muebles, colocar y retirar tornillos y realizar
+                                perforaciones sencillas en materiales como
+                                madera, plástico y algunos metales.
+
+                            </li>
+
+
+                            <!-- Taladro percutor -->
+                            <li
+                                class="list-group-item border-0 ps-0"
+                            >
+
+                                <i
+                                    class="bi bi-tools text-brand-orange me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <strong>
+                                    Taladro percutor:
+                                </strong>
+
+                                Combina el movimiento de giro con pequeños
+                                impactos. Esto facilita la perforación de
+                                materiales de construcción como ladrillos y
+                                mampostería, además de permitir trabajos
+                                convencionales cuando se desactiva la
+                                percusión.
+
+                            </li>
+
+
+                            <!-- Rotomartillo -->
+                            <li
+                                class="list-group-item border-0 ps-0"
+                            >
+
+                                <i
+                                    class="bi bi-tools text-brand-orange me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <strong>
+                                    Rotomartillo:
+                                </strong>
+
+                                Está pensado para trabajos de mayor exigencia
+                                y entrega impactos más fuertes. Resulta más
+                                apropiado cuando se necesita perforar
+                                materiales duros como hormigón o piedra.
+
+                            </li>
+
+
+                            <!-- Cable o batería -->
+                            <li
+                                class="list-group-item border-0 ps-0"
+                            >
+
+                                <i
+                                    class="bi bi-battery-charging text-brand-orange me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <strong>
+                                    ¿Con cable o batería?
+                                </strong>
+
+                                Los modelos inalámbricos ofrecen mayor
+                                movilidad y comodidad. Los modelos con cable
+                                pueden ser convenientes para trabajos
+                                prolongados donde se dispone constantemente
+                                de una conexión eléctrica.
+
+                            </li>
+
+                        </ul>
+
+
+                        <!-- QUÉ REVISAR ANTES DE ELEGIR -->
+                        <h4
+                            class="fw-bold text-brand-dark mt-5 mb-3"
+                        >
+                            Antes de elegir, considera
+                        </h4>
+
+
+                        <ul
+                            class="list-group list-group-flush mb-4"
+                        >
+
+                            <li
+                                class="list-group-item border-0 ps-0"
+                            >
+                                <i
+                                    class="bi bi-check-circle text-brand-orange me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <strong>
+                                    El material:
+                                </strong>
+
+                                madera, metal, ladrillo u hormigón requieren
+                                herramientas y brocas diferentes.
+                            </li>
+
+
+                            <li
+                                class="list-group-item border-0 ps-0"
+                            >
+                                <i
+                                    class="bi bi-check-circle text-brand-orange me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <strong>
+                                    La frecuencia de uso:
+                                </strong>
+
+                                para trabajos ocasionales puede bastar una
+                                herramienta más sencilla, mientras que un uso
+                                frecuente puede requerir un equipo más robusto.
+                            </li>
+
+
+                            <li
+                                class="list-group-item border-0 ps-0"
+                            >
+                                <i
+                                    class="bi bi-check-circle text-brand-orange me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                <strong>
+                                    Las brocas y accesorios:
+                                </strong>
+
+                                utiliza siempre accesorios compatibles con
+                                la herramienta y adecuados para el material
+                                que vas a trabajar.
+                            </li>
+
+                        </ul>
+
+
+                        <!-- RECOMENDACIÓN IMPORTANTE -->
+                        <div
+                            class="p-4 mt-5 bg-light border-start border-4 border-warning rounded"
+                        >
+
+                            <h5 class="fw-bold text-brand-dark">
+
+                                <i
+                                    class="bi bi-exclamation-triangle-fill text-warning me-2"
+                                    aria-hidden="true"
+                                ></i>
+
+                                Importante
+
+                            </h5>
+
+
+                            <p class="mb-0 small">
+
+                                Antes de perforar, comprueba qué material vas
+                                a trabajar y selecciona una broca apropiada.
+                                Evita forzar la herramienta y utiliza los
+                                elementos de protección necesarios para el
+                                trabajo que estés realizando.
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </main>
+
+
+        <!-- CARRITO LATERAL -->
+        <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="carritoOffcanvas"
+            aria-labelledby="carritoOffcanvasLabel"
+        >
+
+            <!-- Encabezado del carrito -->
+            <div
+                class="offcanvas-header bg-brand-dark text-white"
+            >
+
+                <h5
+                    class="offcanvas-title fw-bold d-flex align-items-center"
+                    id="carritoOffcanvasLabel"
+                >
+                    Mi Lista de Productos
+
+                    <span
+                        id="contador-offcanvas"
+                        class="badge bg-secondary ms-2"
+                    >
+                        0
+                    </span>
+                </h5>
+
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="offcanvas"
+                    aria-label="Cerrar carrito"
+                ></button>
+
+            </div>
+
+
+            <!-- Contenido del carrito -->
+            <div
+                class="offcanvas-body d-flex flex-column"
+            >
+
+                <!-- Productos agregados -->
+                <div
+                    id="contenedor-items-carrito"
+                    class="flex-grow-1 overflow-auto"
+                >
+
+                    <p
+                        class="text-muted text-center mt-4"
+                    >
+                        Tu carrito está vacío.
+                    </p>
+
+                </div>
+
+
+                <!-- Total y acciones -->
+                <div
+                    class="mt-auto pt-3 border-top"
+                >
+
+                    <div
+                        class="d-flex justify-content-between align-items-center mb-3"
+                    >
+
+                        <h5 class="fw-bold mb-0">
+                            Total:
+                        </h5>
+
+                        <h4
+                            class="fw-bold text-brand-orange mb-0"
+                            id="total-carrito"
+                        >
+                            $0
+                        </h4>
+
+                    </div>
+
+
+                    <button
+                        class="btn btn-outline-danger w-100 fw-bold"
+                        onclick="vaciarCarrito()"
+                    >
+                        Vaciar Lista
+                    </button>
+
+
+                    <button
+                        class="btn btn-success w-100 fw-bold mt-2"
+                        onclick="window.location.href = 'checkout.html'"
+                    >
+                        Pagar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PIE DE PÁGINA -->
+        <footer
+            class="footer-custom bg-brand-dark py-4 mt-auto"
+        >
+
+            <div
+                class="container d-flex flex-wrap justify-content-between align-items-center"
+            >
+
+                <!-- Copyright -->
+                <p
+                    class="col-md-4 mb-0 fw-bold text-white"
+                >
+                    © 2026 Ferretería Los Maestros
+                </p>
+
+
+                <!-- Logo -->
+                <a
+                    href="index.html"
+                    class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto text-decoration-none"
+                >
+
+                    <img
+                        src="img/favicon-ferreteria.png"
+                        alt="Logo FM"
+                        width="50"
+                        height="40"
+                        class="rounded"
+                    />
+
+                </a>
+
+
+                <!-- Navegación inferior -->
+                <ul
+                    class="nav col-md-4 justify-content-end"
+                >
+
+                    <li class="nav-item">
+                        <a
+                            href="index.html#inicio"
+                            class="nav-link px-2 text-white"
+                        >
+                            Inicio
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a
+                            href="catalogo.html"
+                            class="nav-link px-2 text-white"
+                        >
+                            Productos
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a
+                            href="index.html#nosotros"
+                            class="nav-link px-2 text-white"
+                        >
+                            Nosotros
+                        </a>
+                    </li>
+
+
+                    <li class="nav-item">
+                        <a
+                            href="index.html#contacto"
+                            class="nav-link px-2 text-white"
+                        >
+                            Contacto
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </footer>
+
+
+        <!-- Bootstrap JavaScript -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        ></script>
+
+    </body>
+</html>
