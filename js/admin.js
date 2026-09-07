@@ -436,9 +436,8 @@ function iniciarSelectRegiones() {
     selectRegion.innerHTML = '<option value="">Seleccione Región...</option>';
     if (typeof regiones !== "undefined") {
         regiones.forEach((region, indice) => {
-            selectRegion.innerHTML += (
-                <option value="${indice}">${region.nombre}</option>
-            );
+            // CORREGIDO CON COMILLAS INVERTIDAS
+            selectRegion.innerHTML += `<option value="${indice}">${region.nombre}</option>`;
         });
     }
 }
@@ -452,9 +451,8 @@ function cargarComunasMenu() {
         let indiceRegion = Number(regionSeleccionada);
         let comunas = regiones[indiceRegion].comunas;
         comunas.forEach((comuna) => {
-            selectComuna.innerHTML += (
-                <option value="${comuna}">${comuna}</option>
-            );
+            // CORREGIDO CON COMILLAS INVERTIDAS
+            selectComuna.innerHTML += `<option value="${comuna}">${comuna}</option>`;
         });
     }
 }
